@@ -23,7 +23,7 @@ header {
   color: #f2f2f2;
   margin: 5px;
   padding: 10px;
-  border-bottom: 1px solid black;
+  text-transform: uppercase;
 }
 
 main {
@@ -37,35 +37,54 @@ footer {
   padding: 10px;
 }
 /* Header CSS */
+.icon {
+  position: absolute;
+  width: 70px;
+  height: 52px;
+  margin-left: 15px;
+}
+
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-bottom: 1px solid rgb(226, 226, 226);
   padding: 10px;
 }
 
-.icon {
-  position: absolute;
-  width: 50px;
-  height: 42px;
+.navbar2 {
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid rgb(0, 0, 0);
 }
-div.menu {
+.menu {
   padding: 10px;
 }
 
+.menu2 {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
 .menuContent {
-  position: relative;
-  left: 40%;
+  flex: 1;
+  text-align: center;
+  margin-left: 90px;
 }
 
 .navContent {
   margin: 2px;
   padding: 5px;
   color: black;
-  border: 1px solid black;
   text-decoration-line: none;
 }
+.navContent2 {
+  margin: 10px;
+}
 
+.search {
+  margin-right: 15px;
+}
 i.chart {
   color: black;
   padding: 5px;
@@ -88,21 +107,24 @@ section {
   display: grid;
   grid-template-columns: repeat(4, 327px);
   gap: 20px;
-  /* gap: var(--spacing); */
 }
 
 .product {
   border: 1px solid #ddd;
+  /* animation effect
   transition: transform var(--transition);
+  animation effect end */
   padding: 10px;
   text-align: center;
   margin: auto;
 }
 
 .product:hover {
+  /* animation effect 
   transform: scale(1.05);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-  /* border-color: rgba(0, 0, 0, 0.575); */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); 
+  animation effect end */
+  border-color: rgba(0, 0, 0, 0.575);
 }
 
 .product img {
@@ -122,7 +144,6 @@ a {
   margin-top: 10px;
   padding: 5px 10px;
   border: 1px solid black;
-  /* background-color: #333; */
   color: black;
   text-decoration: none;
 }
