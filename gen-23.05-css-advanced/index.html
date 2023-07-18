@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!--
+Sistem harus dapat menampilkan front page/ halaman dashboard dari daftar product.
+
+Spesifikasi Kebutuhan :
+  Sistem harus mampu menampilkan daftar product berisi gambar product, nama product, deskripsi product, harga Product dan tombol Add to cart."
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Ecommerce product listing" />
+    <title>Latihan CSS Basic</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="icon">
+          <a href=""><img src="/img/icon.webp" class="icon" /></a>
+        </div>
+        <div class="menuContent">
+          <div class="menu">
+            <a href="" class="navContent">Pria</a>
+            <a href="" class="navContent">Wanita</a>
+            <a href="" class="navContent">Anak</a>
+            <a href="" class="navContent">Olahraga</a>
+            <a href="" class="navContent">Brans</a>
+            <a href="" class="navContent">Promo</a>
+            <a href="https://www.adidas.co.id/pria.html" class="navContent"
+              >Source</a
+            >
+          </div>
+        </div>
+        <div class="search">
+          <!-- <input type=" search" name="searchByName" id="SearchName" /> -->
+          <a href=""><i class="chart fa fa-shopping-basket fa-2x"></i></a>
+        </div>
+      </nav>
+      <nav class="navbar2">
+        <div class="menu2">
+          <a href="" class="navContent2">Pria</a>
+          <a href="" class="navContent2">Wanita</a>
+          <a href="" class="navContent2">Anak</a>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <div class="container">
+        <!-- <div class="miniHeader">
+          <div class="backButton">
+            <a href=""><i class="chart fa fa-long-arrow-left fa-2x"></i></a>
+          </div>
+          <div class="pageType">Pria</div>
+        </div> -->
+        <!-- Script perulangan daftar produk -->
+        <section class="products" id="loop-output">
+          <script>
+            let output = "";
+            let price = 100;
+            for (let i = 1; i <= 12; i++) {
+              output += `
+              <article class="product">
+                <a href="">
+                  <img src="img/${i}.webp" alt="Product ${i}" />
+                  <h3>Product ${i}</h3>
+                  <p>$${price}</p>
+                  <a href="" class="detail-btn">Detail</a>
+                  </a>
+                  </article>`;
+              price += 100;
+            }
+            document.getElementById("loop-output").innerHTML = output;
+          </script>
+          <!-- <article class="product">
+            <a href="">
+              <img src="img/1.webp" alt="Product 1" />
+              <h3>Product 1</h3>
+              <p>$19.99</p>
+              <a href="" class="detail-btn">Detail</a>
+            </a>
+          </article> -->
+          <!-- Add more product items here -->
+        </section>
+        <section class="miniFooter">
+          <div class="footer-nav">
+            <a href="#" class="button prev">Previous</a>
+
+            <span>Halaman 1 of 10</span>
+
+            <a href="#" class="button next">Next</a>
+          </div>
+        </section>
+        <!--<div class="miniFooter">
+          
+        </div> -->
+      </div>
+    </main>
+    <footer>
+      <!-- <div></div>
+      <div></div>
+      <div></div> -->
+    </footer>
+  </body>
+</html>

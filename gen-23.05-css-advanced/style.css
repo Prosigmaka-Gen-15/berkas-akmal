@@ -1,0 +1,190 @@
+/* input {
+  padding: 7px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+} */
+:root {
+  --spacing: 1rem;
+  --transition: 0.3s ease;
+}
+/* @media (max-width: 600px) {
+} */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  /* background-color: #333; */
+  color: #f2f2f2;
+  margin: 5px;
+  padding: 10px;
+  text-transform: uppercase;
+}
+
+main {
+  flex: 1;
+  padding: 10px;
+}
+
+footer {
+  /* background-color: #333; */
+  color: #f2f2f2;
+  padding: 10px;
+}
+/* Header CSS */
+.icon {
+  position: absolute;
+  width: 70px;
+  height: 52px;
+  margin-left: 15px;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgb(226, 226, 226);
+  padding: 10px;
+}
+
+.navbar2 {
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid rgb(0, 0, 0);
+}
+.menu {
+  padding: 10px;
+}
+
+.menu2 {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+.menuContent {
+  flex: 1;
+  text-align: center;
+  margin-left: 90px;
+}
+
+.navContent {
+  margin: 2px;
+  padding: 5px;
+  color: black;
+  text-decoration-line: none;
+}
+.navContent2 {
+  margin: 10px;
+}
+
+.search {
+  margin-right: 15px;
+}
+i.chart {
+  color: black;
+  padding: 5px;
+  text-decoration-line: none;
+}
+/* ================== Mini Header ====================== */
+/* .backButton {
+} */
+.backButton,
+chart {
+  /* background-color: red; */
+  margin: 10px 0px 10px 20px;
+  /* text-decoration-line: none; */
+}
+/* ================== Product CSS ====================== */
+section {
+  margin: 10px 200px 10px 200px;
+}
+.products {
+  display: grid;
+  grid-template-columns: repeat(4, 327px);
+  gap: 20px;
+}
+
+.product {
+  border: 1px solid #ddd;
+  /* animation effect
+  transition: transform var(--transition);
+  animation effect end */
+  padding: 10px;
+  text-align: center;
+  margin: auto;
+}
+
+.product:hover {
+  /* animation effect 
+  transform: scale(1.05);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); 
+  animation effect end */
+  border-color: rgba(0, 0, 0, 0.575);
+}
+
+.product img {
+  max-height: 250px;
+  object-fit: cover;
+}
+
+.product,
+a {
+  color: black;
+  font-weight: bold;
+  text-decoration-line: none;
+}
+
+.detail-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 5px 10px;
+  border: 1px solid black;
+  color: black;
+  text-decoration: none;
+}
+
+/* ==================== Mini Footer ================= */
+.miniFooter {
+  padding: 40px;
+}
+
+.footer-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  padding: 5px 10px;
+  margin: 0 5px;
+  /* background: #333; */
+  /* color: #fff; */
+  border: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-decoration-line: underline;
+}
+span {
+  margin: 0;
+}
+
+.prev {
+  margin-right: auto;
+}
+
+.next {
+  margin-left: auto;
+}
+
+/* .button:hover {
+  background: #444;
+} */
+/* ========================= Footer =================== */
+footer {
+  border-top: 1px solid #333;
+}
