@@ -9,10 +9,6 @@
   .menu2 {
     flex-direction: column;
   }
-  .products {
-    background-color: #333;
-    grid-template-columns: repeat(2, 350px);
-  }
 }
 
 :root {
@@ -131,8 +127,8 @@ chart {
 .products {
   gap: 15px;
   margin: 10px;
-  display: grid;
-  grid-template-columns: repeat(4, 350px);
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
 }
 
