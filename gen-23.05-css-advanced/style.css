@@ -37,12 +37,6 @@ main {
   flex: 1;
   padding: 10px;
 }
-
-footer {
-  /* background-color: #333; */
-  color: #f2f2f2;
-  padding: 10px;
-}
 /* Header CSS */
 .iconContainer {
   width: 70px;
@@ -123,15 +117,19 @@ chart {
   /* text-decoration-line: none; */
 }
 /* ================== Product CSS ====================== */
-
+.containerMain {
+  display: flex;
+}
+.containerMain .products {
+  margin: auto;
+}
 .products {
   gap: 15px;
   margin: 10px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  max-width: 1300px;
 }
-
 .product {
   display: flex;
   margin: 15px;
@@ -187,9 +185,8 @@ chart {
 /* ==================== Mini Footer ================= */
 
 .miniFooter {
-  margin: 10px;
   justify-content: center;
-  padding: 40px;
+  padding: 20px;
 }
 
 .footer-nav {
@@ -201,12 +198,10 @@ chart {
 .button {
   padding: 5px 10px;
   margin: 0 5px;
-  /* background: #333; */
-  /* color: #fff; */
-  border: none;
-  text-decoration: none;
+  color: black;
+  border: 1px solid black;
   text-transform: uppercase;
-  text-decoration-line: underline;
+  text-decoration-line: none;
 }
 span {
   margin: 0;
@@ -223,4 +218,31 @@ span {
 /* ========================= Footer =================== */
 footer {
   border-top: 1px solid #333;
+}
+
+/* ========================= Halaman About =================== */
+.containerMain > div {
+  flex: 1;
+}
+.containerLeft {
+  display: flex;
+  max-width: 800px;
+  justify-content: end;
+}
+.containerLeft .content {
+  margin: 10px;
+}
+.containerLeft .content .mainImg {
+  width: 450px;
+}
+.containerLeft .mini {
+  width: 450px;
+}
+.miniImg {
+  display: inline;
+  width: 100px;
+}
+.containerRight {
+  padding-left: 15px;
+  margin-right: 250px;
 }

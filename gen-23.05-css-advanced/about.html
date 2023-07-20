@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detail Produk</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script>
+      fetch("header.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("header").innerHTML = data;
+        });
+
+      fetch("footer.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("footer").innerHTML = data;
+        });
+    </script>
+  </head>
+  <body>
+    <div id="header"></div>
+
+    <main>
+      <div class="containerMain">
+        <div class="containerLeft">
+          <div class="content">
+            <div class="main">
+              <img src="img/1.webp" class="mainImg" alt="Product 1" />
+            </div>
+            <div class="mini">
+              <img src="img/1.webp" class="miniImg" alt="Product 1" />
+              <img src="img/2.webp" class="miniImg" alt="Product 2" />
+              <img src="img/3.webp" class="miniImg" alt="Product 3" />
+              <img src="img/4.webp" class="miniImg" alt="Product 4" />
+            </div>
+          </div>
+        </div>
+        <div class="containerRight">
+          <p class="productName">Produk 1</p>
+          <br />
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet
+            porttitor eget dolor morbi non arcu risus quis. Sagittis orci a
+            scelerisque purus semper eget duis at tellus. Dictum sit amet justo
+            donec enim diam vulputate. Ultricies mi eget mauris pharetra et
+            ultrices neque ornare aenean. Pharetra diam sit amet nisl suscipit.
+            Interdum consectetur libero id faucibus nisl tincidunt eget. Sed
+            augue lacus viverra vitae congue eu consequat. Laoreet id donec
+            ultrices tincidunt arcu. Euismod in pellentesque massa placerat duis
+            ultricies lacus sed turpis.
+          </p>
+          <br />
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et doslore magna aliqua. Sit
+            amet porttitor eget dolor morbi non arcu risus quis. Sagittis orci a
+            scelerisque purus semper eget duis at tellus. Dictum sit amet justo
+            donec enim diam vulputate. Ultricies mi eget mauris pharetra et
+            ultrices neque ornare aenean. Pharetra diam sit amet nisl suscipit.
+            Interdum consectetur libero id faucibus nisl tincidunt eget. Sed
+            augue lacus viverra vitae congue eu consequat. Laoreet id donec
+            ultrices tincidunt arcu. Euismod in pellentesque massa placerat duis
+            ultricies lacus sed turpis.
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <div id="footer"></div>
+  </body>
+</html>
