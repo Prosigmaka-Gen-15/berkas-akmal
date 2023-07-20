@@ -23,17 +23,16 @@ Spesifikasi Kebutuhan :
   <body>
     <header>
       <nav class="navbar">
-        <div class="icon">
-          <a href=""><img src="/img/icon.webp" class="icon" /></a>
+        <div class="iconContainer">
+          <a href="" class="iconLink"
+            ><img src="/img/icon.webp" class="icon"
+          /></a>
         </div>
-        <div class="menuContent">
+        <div class="container">
           <div class="menu">
             <a href="" class="navContent">Pria</a>
             <a href="" class="navContent">Wanita</a>
             <a href="" class="navContent">Anak</a>
-            <a href="" class="navContent">Olahraga</a>
-            <a href="" class="navContent">Brans</a>
-            <a href="" class="navContent">Promo</a>
             <a href="https://www.adidas.co.id/pria.html" class="navContent"
               >Source</a
             >
@@ -45,24 +44,25 @@ Spesifikasi Kebutuhan :
         </div>
       </nav>
       <nav class="navbar2">
-        <div class="menu2">
-          <a href="" class="navContent2">Pria</a>
-          <a href="" class="navContent2">Wanita</a>
-          <a href="" class="navContent2">Anak</a>
+        <div class="container2">
+          <div class="menu2">
+            <a href="" class="navContent2">Diskon</a>
+            <a href="" class="navContent2">Event</a>
+          </div>
         </div>
       </nav>
     </header>
     <main>
-      <div class="container">
+      <div class="containerMenu">
         <!-- <div class="miniHeader">
           <div class="backButton">
             <a href=""><i class="chart fa fa-long-arrow-left fa-2x"></i></a>
           </div>
           <div class="pageType">Pria</div>
         </div> -->
-        <!-- Script perulangan daftar produk -->
         <section class="products" id="loop-output">
-          <script>
+          <!-- Script perulangan daftar produk -->
+          <!-- <script>
             let output = "";
             let price = 100;
             for (let i = 1; i <= 12; i++) {
@@ -73,20 +73,108 @@ Spesifikasi Kebutuhan :
                   <h3>Product ${i}</h3>
                   <p>$${price}</p>
                   <a href="" class="detail-btn">Detail</a>
-                  </a>
-                  </article>`;
+                </a>
+              </article>`;
               price += 100;
             }
             document.getElementById("loop-output").innerHTML = output;
-          </script>
-          <!-- <article class="product">
-            <a href="">
+          </script> -->
+          <article class="product">
+            <a href="" class="productContent">
               <img src="img/1.webp" alt="Product 1" />
               <h3>Product 1</h3>
               <p>$19.99</p>
               <a href="" class="detail-btn">Detail</a>
             </a>
-          </article> -->
+          </article>
+          <article class="product">
+            <a href="" class="productContent">
+              <img src="img/1.webp" alt="Product 1" />
+              <h3>Product 1</h3>
+              <p>$19.99</p>
+              <a href="" class="detail-btn">Detail</a>
+            </a>
+          </article>
+          <article class="product">
+            <a href="" class="productContent">
+              <img src="img/1.webp" alt="Product 1" />
+              <h3>Product 1</h3>
+              <p>$19.99</p>
+              <a href="" class="detail-btn">Detail</a>
+            </a>
+          </article>
+          <article class="product">
+            <a href="" class="productContent">
+              <img src="img/1.webp" alt="Product 1" />
+              <h3>Product 1</h3>
+              <p>$19.99</p>
+              <a href="" class="detail-btn">Detail</a>
+            </a>
+          </article>
+          <article class="product">
+            <a href="" class="productContent">
+              <img src="img/1.webp" alt="Product 1" />
+              <h3>Product 1</h3>
+              <p>$19.99</p>
+              <a href="" class="detail-btn">Detail</a>
+            </a>
+          </article>
+          <article class="product">
+            <a href="" class="productContent">
+              <img src="img/1.webp" alt="Product 1" />
+              <h3>Product 1</h3>
+              <p>$19.99</p>
+              <a href="" class="detail-btn">Detail</a>
+            </a>
+          </article>
+          <article class="product">
+            <a href="" class="productContent">
+              <img src="img/1.webp" alt="Product 1" />
+              <h3>Product 1</h3>
+              <p>$19.99</p>
+              <a href="" class="detail-btn">Detail</a>
+            </a>
+          </article>
+          <article class="product">
+            <a href="" class="productContent">
+              <img src="img/1.webp" alt="Product 1" />
+              <h3>Product 1</h3>
+              <p>$19.99</p>
+              <a href="" class="detail-btn">Detail</a>
+            </a>
+          </article>
+          <article class="product">
+            <a href="" class="productContent">
+              <img src="img/1.webp" alt="Product 1" />
+              <h3>Product 1</h3>
+              <p>$19.99</p>
+              <a href="" class="detail-btn">Detail</a>
+            </a>
+          </article>
+          <article class="product">
+            <a href="" class="productContent">
+              <img src="img/1.webp" alt="Product 1" />
+              <h3>Product 1</h3>
+              <p>$19.99</p>
+              <a href="" class="detail-btn">Detail</a>
+            </a>
+          </article>
+          <article class="product">
+            <a href="" class="productContent">
+              <img src="img/1.webp" alt="Product 1" />
+              <h3>Product 1</h3>
+              <p>$19.99</p>
+              <a href="" class="detail-btn">Detail</a>
+            </a>
+          </article>
+          <article class="product">
+            <a href="" class="productContent">
+              <img src="img/1.webp" alt="Product 1" />
+              <h3>Product 1</h3>
+              <p>$19.99</p>
+              <a href="" class="detail-btn">Detail</a>
+            </a>
+          </article>
           <!-- Add more product items here -->
         </section>
         <section class="miniFooter">
