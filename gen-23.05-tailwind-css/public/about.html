@@ -26,8 +26,136 @@
   <body class="flex flex-col min-h-screen m-0 p-0">
     <div id="header"></div>
 
-    <main class="flex-1 p-3"><div>asd</div></main>
-
+    <main class="flex-1 p-3">
+      <div class="containerMain flex">
+        <div class="containerLeft flex-content">
+          <div class="content m-3">
+            <div class="main flex justify-center m-1">
+              <img
+                src="../img/1.webp"
+                class="mainImg max-w-md"
+                alt="Product 1"
+              />
+            </div>
+            <div class="miniImgContainer">
+              <img src="../img/1.webp" class="miniImg" alt="Product 1" />
+              <img src="../img/2.webp" class="miniImg" alt="Product 2" />
+              <img src="../img/3.webp" class="miniImg" alt="Product 3" />
+              <img src="../img/4.webp" class="miniImg" alt="Product 4" />
+            </div>
+          </div>
+        </div>
+        <div class="containerRight flex-1">
+          <div class="content m-3 max-w-xl">
+            <div class="product_title">
+              <h1 class="inline-block mx-3 my-2 font-bold uppercase text-xl">
+                Produk 1
+              </h1>
+            </div>
+            <div class="product_price">
+              <p
+                class="inline-block mx-3 my-1 line-through font-semibold text-gray-600 text-xl"
+              >
+                Rp750.000,00
+              </p>
+              <p class="inline-block my-1 font-semibold text-red-500 text-xl">
+                Rp550.000,00
+              </p>
+            </div>
+            <br />
+            <div class="product_description">
+              <p class="inline-block m-1">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit
+                amet porttitor eget dolor morbi non arcu risus quis. Sagittis
+                orci a scelerisque purus semper eget duis at tellus. Dictum sit
+                amet justo donec enim diam vulputate. Ultricies mi eget mauris
+                pharetra et ultrices neque ornare aenean. Pharetra diam sit amet
+                nisl suscipit. Interdum consectetur libero id faucibus nisl
+                tincidunt eget. Sed augue lacus viverra vitae congue eu
+                consequat. Laoreet id donec ultrices tincidunt arcu. Euismod in
+                pellentesque massa placerat duis ultricies lacus sed turpis.
+              </p>
+            </div>
+            <hr class="border-t-1 border-gray-500 my-2" />
+          </div>
+          <div class="order_section m-3 max-w-xl flex">
+            <div class="order_size">
+              <h1 class="inline-block mx-3 my-3 font-bold uppercase text-xl">
+                size
+              </h1>
+              <ul class="flex">
+                <li class="sizeList">
+                  <a href=""><span class="m-2 text-lg">39</span></a>
+                </li>
+                <li class="sizeList">
+                  <a href=""><span class="m-2 text-lg">40</span></a>
+                </li>
+                <li class="sizeList">
+                  <a href=""><span class="m-2 text-lg">41</span></a>
+                </li>
+                <li class="sizeList">
+                  <a href=""><span class="m-2 text-lg">42</span></a>
+                </li>
+                <li class="sizeList">
+                  <a href=""><span class="m-2 text-lg">43</span></a>
+                </li>
+              </ul>
+              <div class="">
+                <form action="" class="flex">
+                  <div
+                    class="order_quantity m-3 rounded-lg border border-black"
+                  >
+                    <button
+                      class="cursor-pointer bg-black p-3 rounded text-white"
+                      type="button"
+                      onclick="kurang()"
+                    >
+                      -
+                    </button>
+                    <input
+                      id="jumlah"
+                      type="number"
+                      min="1"
+                      value="1"
+                      class="max-w-inputWidth spin-none"
+                    />
+                    <button
+                      class="cursor-pointer bg-black p-3 rounded text-white"
+                      type="button"
+                      onclick="tambah()"
+                    >
+                      +
+                    </button>
+                  </div>
+                  <div class="my-2 p-3 rounded-full border-2 border-black">
+                    <input type="submit" class="font-bold" value="Add to Chart">
+                  </div>
+                </form>
+              </div>
+          </div>
+        </div>
+      </div>
+    </main>
     <div id="footer"></div>
   </body>
+  <script>
+    function kurang() {
+      var input = document.getElementById("jumlah");
+      var value = parseInt(input.value);
+
+      if (value > 1) {
+        value--;
+        input.value = value;
+      }
+    }
+
+    function tambah() {
+      var input = document.getElementById("jumlah");
+      var value = parseInt(input.value);
+
+      value++;
+      input.value = value;
+    }
+  </script>
 </html>
