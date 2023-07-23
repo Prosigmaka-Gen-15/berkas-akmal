@@ -28,12 +28,14 @@
 
     <main class="flex-1 p-3">
       <div class="containerMain flex">
+        <!-- <div class="containerMain flex-col"> -->
         <div class="containerLeft flex-content">
+          <!-- <div class="containerLeft flex-content2"> -->
           <div class="content m-3">
             <div class="main flex justify-center m-1">
               <img
                 src="../img/1.webp"
-                class="mainImg max-w-md"
+                class="mainImg max-w-md transition-opacity"
                 alt="Product 1"
               />
             </div>
@@ -42,6 +44,7 @@
               <img src="../img/2.webp" class="miniImg" alt="Product 2" />
               <img src="../img/3.webp" class="miniImg" alt="Product 3" />
               <img src="../img/4.webp" class="miniImg" alt="Product 4" />
+              <img src="../img/5.webp" class="miniImg" alt="Product 5" />
             </div>
           </div>
         </div>
@@ -129,15 +132,21 @@
                     </button>
                   </div>
                   <div class="my-2 p-3 rounded-full border-2 border-black">
-                    <input type="submit" class="font-bold" value="Add to Chart">
+                    <input
+                      type="submit"
+                      class="font-bold"
+                      value="Add to Chart"
+                    />
                   </div>
                 </form>
               </div>
+            </div>
           </div>
         </div>
       </div>
     </main>
-    <div id="footer"></div>
+    <div class="p-5 border-t-2 border-black mx-3"></div>
+    <!-- <div id="footer"></div> -->
   </body>
   <script>
     function kurang() {
@@ -157,5 +166,26 @@
       value++;
       input.value = value;
     }
+
+    // Dapatkan semua elemen dengan class miniImg
+    const miniImgs = document.querySelectorAll(".miniImg");
+
+    // Loop through each miniImg
+    miniImgs.forEach((img) => {
+      // Tambahkan event listener click
+      img.addEventListener("click", function () {
+        // Dapatkan src gambar mini yang diklik
+        const src = this.getAttribute("src");
+
+        // Dapatkan elemen mainImg
+        const mainImg = document.querySelector(".mainImg");
+        mainImg.style.opacity = 0;
+        // Ganti src mainImg dengan src gambar mini
+        setTimeout(() => {
+          mainImg.setAttribute("src", src);
+          mainImg.style.opacity = 1; // tambahkan ini
+        }, 500); // tambahkan timer
+      });
+    });
   </script>
 </html>

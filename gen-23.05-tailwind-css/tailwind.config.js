@@ -6,6 +6,9 @@ module.exports = {
       margin: {
         coba: "6px",
       },
+      flex: {
+        flexGellery: "0 0 auto",
+      },
       maxWidth: {
         inputWidth: "55px",
       },
