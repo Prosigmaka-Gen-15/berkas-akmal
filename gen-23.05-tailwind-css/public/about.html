@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Product Details</title>
     <link rel="stylesheet" href="style.css" />
     <link
       rel="stylesheet"
@@ -23,19 +23,18 @@
         });
     </script>
   </head>
-  <body class="flex flex-col min-h-screen m-0 p-0">
+  <body class="flex flex-col min-h-screen p-0 m-0">
     <div id="header"></div>
 
     <main class="flex-1 p-3">
-      <div class="containerMain flex">
-        <!-- <div class="containerMain flex-col"> -->
-        <div class="containerLeft flex-content">
+      <div class="block md:flex containerMain">
+        <div class="flex justify-center containerLeft md:flex-content">
           <!-- <div class="containerLeft flex-content2"> -->
-          <div class="content m-3">
-            <div class="main flex justify-center m-1">
+          <div class="m-3 content">
+            <div class="flex justify-center m-1 main">
               <img
                 src="../img/1.webp"
-                class="mainImg max-w-md transition-opacity"
+                class="max-w-md transition-opacity mainImg"
                 alt="Product 1"
               />
             </div>
@@ -48,20 +47,22 @@
             </div>
           </div>
         </div>
-        <div class="containerRight flex-1">
-          <div class="content m-3 max-w-xl">
+        <div class="flex-1 mt-10 containerRight md:mt-0">
+          <div class="m-3 md:max-w-xl content">
             <div class="product_title">
-              <h1 class="inline-block mx-3 my-2 font-bold uppercase text-xl">
+              <h1
+                class="flex justify-center mx-3 my-2 text-xl font-bold uppercase md:justify-start md:inline-block"
+              >
                 Produk 1
               </h1>
             </div>
-            <div class="product_price">
+            <div class="flex justify-center product_price md:justify-start">
               <p
-                class="inline-block mx-3 my-1 line-through font-semibold text-gray-600 text-xl"
+                class="inline-block mx-3 my-1 text-xl font-semibold text-gray-600 line-through"
               >
                 Rp750.000,00
               </p>
-              <p class="inline-block my-1 font-semibold text-red-500 text-xl">
+              <p class="inline-block my-1 text-xl font-semibold text-red-500">
                 Rp550.000,00
               </p>
             </div>
@@ -80,11 +81,15 @@
                 pellentesque massa placerat duis ultricies lacus sed turpis.
               </p>
             </div>
-            <hr class="border-t-1 border-gray-500 my-2" />
+            <hr class="my-2 border-gray-500 border-t-1" />
           </div>
-          <div class="order_section m-3 max-w-xl flex">
+          <div
+            class="flex justify-center m-3 md:max-w-xl md:justify-start order_section"
+          >
             <div class="order_size">
-              <h1 class="inline-block mx-3 my-3 font-bold uppercase text-xl">
+              <h1
+                class="flex justify-center mx-3 my-3 text-xl font-bold uppercase md:inline-block"
+              >
                 size
               </h1>
               <ul class="flex">
@@ -107,10 +112,10 @@
               <div class="">
                 <form action="" class="flex">
                   <div
-                    class="order_quantity m-3 rounded-lg border border-black"
+                    class="m-3 border border-black rounded-lg order_quantity"
                   >
                     <button
-                      class="cursor-pointer bg-black p-3 rounded text-white"
+                      class="p-3 text-white bg-black rounded cursor-pointer"
                       type="button"
                       onclick="kurang()"
                     >
@@ -124,14 +129,14 @@
                       class="max-w-inputWidth spin-none"
                     />
                     <button
-                      class="cursor-pointer bg-black p-3 rounded text-white"
+                      class="p-3 text-white bg-black rounded cursor-pointer"
                       type="button"
                       onclick="tambah()"
                     >
                       +
                     </button>
                   </div>
-                  <div class="my-2 p-3 rounded-full border-2 border-black">
+                  <div class="p-3 my-2 border-2 border-black rounded-full">
                     <input
                       type="submit"
                       class="font-bold"
@@ -145,7 +150,7 @@
         </div>
       </div>
     </main>
-    <div class="p-5 border-t-2 border-black mx-3"></div>
+    <div class="p-5 mx-3 border-t-2 border-black"></div>
     <!-- <div id="footer"></div> -->
   </body>
   <script>
