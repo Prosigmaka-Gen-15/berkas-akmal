@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Details</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script>
+      fetch("header.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("header").innerHTML = data;
+        });
+
+      fetch("footer.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("footer").innerHTML = data;
+        });
+    </script>
+  </head>
+  <body class="flex flex-col min-h-screen p-0 m-0">
+    <div id="header"></div>
+
+    <main class="flex-1 p-3">
+      <div class="block md:flex containerMain">
+        <div class="flex justify-center containerLeft md:flex-content">
+          <div class="m-3 content">
+            <div class="flex justify-center m-1 main">
+              <img
+                src="../img/1.webp"
+                class="max-w-md transition-opacity mainImg"
+                alt="Product 1"
+              />
+            </div>
+            <div class="miniImgContainer">
+              <img src="../img/1.webp" class="miniImg" alt="Product 1" />
+              <img src="../img/2.webp" class="miniImg" alt="Product 2" />
+              <img src="../img/3.webp" class="miniImg" alt="Product 3" />
+              <img src="../img/4.webp" class="miniImg" alt="Product 4" />
+              <img src="../img/5.webp" class="miniImg" alt="Product 5" />
+            </div>
+          </div>
+        </div>
+        <div class="flex-1 mt-10 containerRight md:mt-0">
+          <div class="m-3 md:max-w-xl content">
+            <div class="product_title">
+              <h1
+                class="flex justify-center mx-3 my-2 text-xl font-bold uppercase md:justify-start md:inline-block"
+              >
+                Produk 1
+              </h1>
+            </div>
+            <div class="flex justify-center product_price md:justify-start">
+              <p
+                class="inline-block mx-3 my-1 text-xl font-semibold text-gray-600 line-through"
+              >
+                Rp750.000,00
+              </p>
+              <p class="inline-block my-1 text-xl font-semibold text-red-500">
+                Rp550.000,00
+              </p>
+            </div>
+            <br />
+            <div class="product_description">
+              <p class="inline-block m-1">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit
+                amet porttitor eget dolor morbi non arcu risus quis. Sagittis
+                orci a scelerisque purus semper eget duis at tellus. Dictum sit
+                amet justo donec enim diam vulputate. Ultricies mi eget mauris
+                pharetra et ultrices neque ornare aenean. Pharetra diam sit amet
+                nisl suscipit. Interdum consectetur libero id faucibus nisl
+                tincidunt eget. Sed augue lacus viverra vitae congue eu
+                consequat. Laoreet id donec ultrices tincidunt arcu. Euismod in
+                pellentesque massa placerat duis ultricies lacus sed turpis.
+              </p>
+            </div>
+            <hr class="my-2 border-gray-500 border-t-1" />
+          </div>
+          <div
+            class="flex justify-center m-3 md:max-w-xl md:justify-start order_section"
+          >
+            <div class="order_size">
+              <h1
+                class="flex justify-center mx-3 my-3 text-xl font-bold uppercase md:inline-block"
+              >
+                size
+              </h1>
+              <ul class="flex">
+                <li class="sizeList">
+                  <a href=""><span class="sizeProperty">39</span></a>
+                </li>
+                <li class="sizeList">
+                  <a href=""><span class="sizeProperty">40</span></a>
+                </li>
+                <li class="sizeList">
+                  <a href=""><span class="sizeProperty">41</span></a>
+                </li>
+                <li class="sizeList">
+                  <a href=""><span class="sizeProperty">42</span></a>
+                </li>
+                <li class="sizeList">
+                  <a href=""><span class="sizeProperty">43</span></a>
+                </li>
+              </ul>
+              <div class="">
+                <form action="" class="flex">
+                  <div
+                    class="m-3 border border-black rounded-lg order_quantity"
+                  >
+                    <button
+                      class="p-3 text-white bg-black rounded cursor-pointer"
+                      type="button"
+                      onclick="kurang()"
+                    >
+                      -
+                    </button>
+                    <input
+                      id="jumlah"
+                      type="number"
+                      min="1"
+                      value="1"
+                      class="max-w-inputWidth spin-none"
+                    />
+                    <button
+                      class="p-3 text-white bg-black rounded cursor-pointer"
+                      type="button"
+                      onclick="tambah()"
+                    >
+                      +
+                    </button>
+                  </div>
+                  <div class="submitButton">
+                    <input
+                      type="submit"
+                      class="font-bold"
+                      value="Add to Chart"
+                    />
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div class="p-5 mx-3 border-t-2 border-black"></div>
+    <!-- <div id="footer"></div> -->
+  </body>
+  <script>
+    function kurang() {
+      var input = document.getElementById("jumlah");
+      var value = parseInt(input.value);
+
+      if (value > 1) {
+        value--;
+        input.value = value;
+      }
+    }
+
+    function tambah() {
+      var input = document.getElementById("jumlah");
+      var value = parseInt(input.value);
+
+      value++;
+      input.value = value;
+    }
+
+    // Dapatkan semua elemen dengan class miniImg
+    const miniImgs = document.querySelectorAll(".miniImg");
+
+    // Loop through each miniImg
+    miniImgs.forEach((img) => {
+      // Tambahkan event listener click
+      img.addEventListener("click", function () {
+        // Dapatkan src gambar mini yang diklik
+        const src = this.getAttribute("src");
+
+        // Dapatkan elemen mainImg
+        const mainImg = document.querySelector(".mainImg");
+        mainImg.style.opacity = 0;
+        // Ganti src mainImg dengan src gambar mini
+        setTimeout(() => {
+          mainImg.setAttribute("src", src);
+          mainImg.style.opacity = 1; // gambar menjadi jelas
+        }, 500); // tambahkan timer
+      });
+    });
+  </script>
+</html>

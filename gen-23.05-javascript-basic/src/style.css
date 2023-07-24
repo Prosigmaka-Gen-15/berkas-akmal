@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .displayTransition {
+    @apply sm:transition sm:ease-in-out sm:duration-700;
+  }
+
+  .flex-content {
+    @apply flex justify-end flex-1 max-w-4xl;
+  }
+
+  .flex-content2 {
+    @apply justify-end flex-1 max-w-4xl;
+  }
+  .miniImg {
+    @apply w-24 mr-2 transition cursor-pointer flex-flexGellery hover:opacity-50;
+  }
+
+  .miniImgContainer {
+    @apply flex max-w-md m-1 mt-1 overflow-auto;
+  }
+
+  .sizeList {
+    @apply mx-3 transition border border-black rounded-3xl hover:bg-black hover:text-white;
+  }
+  .sizeProperty {
+    @apply m-2 text-lg;
+  }
+
+  .submitButton {
+    @apply p-3 my-2 border-2 border-black rounded-full hover:bg-black hover:text-white;
+  }
+}
+
+@layer components {
+  .spin-none::-webkit-inner-spin-button,
+  .spin-none::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
