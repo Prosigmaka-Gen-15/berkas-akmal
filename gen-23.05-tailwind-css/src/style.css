@@ -15,7 +15,7 @@
     @apply justify-end flex-1 max-w-4xl;
   }
   .miniImg {
-    @apply w-24 mr-2 flex-flexGellery;
+    @apply w-24 mr-2 transition cursor-pointer flex-flexGellery hover:opacity-50;
   }
 
   .miniImgContainer {
@@ -23,33 +23,14 @@
   }
 
   .sizeList {
-    @apply mx-3 border border-black rounded-3xl;
+    @apply mx-3 transition border border-black rounded-3xl hover:bg-black hover:text-white;
+  }
+  .sizeProperty {
+    @apply m-2 text-lg;
   }
 
-  .mobileScreenNavOne {
-    @apply flex flex-col items-center justify-between p-3 border-b-2 border-b-slate-200;
-  }
-  .mobileScreenNavTwo {
-    @apply flex flex-col border-b-2 border-black;
-  }
-  .mobileScreenMenuOne {
-    @apply flex flex-col p-1 font-bold text-black no-underline;
-  }
-  .mobileScreenMenuTwo {
-    @apply flex flex-col p-1 font-bold text-black no-underline;
-  }
-
-  .laptopScreenNavOne {
-    @apply flex items-center justify-between p-3 border-b-2 border-b-slate-200;
-  }
-  .laptopScreenNavTwo {
-    @apply flex justify-center border-b-2 border-black;
-  }
-  .laptopScreenContainerOne {
-    @apply p-3 font-bold text-black no-underline;
-  }
-  .laptopScreenContainerTwo {
-    @apply flex p-1 font-bold text-black no-underline;
+  .submitButton {
+    @apply p-3 my-2 border-2 border-black rounded-full hover:bg-black hover:text-white;
   }
 }
 
