@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./public/*.html"],
+  content: ["./**/*.{html,js}"],
+  safelist: ["activeButton"],
   theme: {
     extend: {
       margin: {
