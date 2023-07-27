@@ -124,6 +124,7 @@ chart {
   margin: auto;
 }
 .products {
+  justify-content: center;
   gap: 15px;
   margin: 10px;
   display: flex;

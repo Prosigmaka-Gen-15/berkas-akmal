@@ -54,15 +54,17 @@ Spesifikasi Kebutuhan :
     </header>
     <main>
       <div class="container">
-        <!-- <div class="miniHeader">
-          <div class="backButton">
-            <a href=""><i class="chart fa fa-long-arrow-left fa-2x"></i></a>
-          </div>
-          <div class="pageType">Pria</div>
-        </div> -->
         <!-- Script perulangan daftar produk -->
         <section class="products" id="loop-output">
-          <script>
+          <article class="product">
+            <a href="">
+              <img src="img/1.webp" alt="Product 1" />
+              <h3>No loop</h3>
+              <p>$20.99</p>
+              <a href="" class="detail-btn">Detail</a>
+            </a>
+          </article>
+          <!-- <script>
             let output = "";
             let price = 100;
             for (let i = 1; i <= 12; i++) {
@@ -78,15 +80,7 @@ Spesifikasi Kebutuhan :
               price += 100;
             }
             document.getElementById("loop-output").innerHTML = output;
-          </script>
-          <!-- <article class="product">
-            <a href="">
-              <img src="img/1.webp" alt="Product 1" />
-              <h3>Product 1</h3>
-              <p>$19.99</p>
-              <a href="" class="detail-btn">Detail</a>
-            </a>
-          </article> -->
+          </script> -->
           <!-- Add more product items here -->
         </section>
         <section class="miniFooter">
