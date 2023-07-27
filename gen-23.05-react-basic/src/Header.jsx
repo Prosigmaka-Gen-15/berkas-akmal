@@ -17,10 +17,7 @@ export default function Header() {
             <a href='./about.html' className='p-1 m-1 navContent'>
               Product Detail
             </a>
-            <a
-              href='https://www.adidas.co.id/pria.html'
-              className='p-1 m-1 navContent'
-            >
+            <a href='https://www.adidas.co.id/pria.html' className='p-1 m-1 navContent'>
               Source
             </a>
             <a href='' className='p-1 m-1 sm:hidden navContent'>
