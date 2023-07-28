@@ -1,6 +1,4 @@
-// /* eslint-disable react/prop-types */
-
-import { getImgUrl } from './utils';
+import { getImgUrl } from '../assets/utils';
 import PropTypes from 'prop-types';
 
 //deklarasi tipe data

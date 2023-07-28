@@ -534,10 +534,6 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
-.col-span-4 {
-  grid-column: span 4 / span 4;
-}
-
 .m-0 {
   margin: 0px;
 }
@@ -556,14 +552,6 @@ video {
 
 .m-4 {
   margin: 1rem;
-}
-
-.m-auto {
-  margin: auto;
-}
-
-.m-2 {
-  margin: 0.5rem;
 }
 
 .mx-1 {
@@ -593,12 +581,12 @@ video {
   margin-right: auto;
 }
 
-.mt-3 {
-  margin-top: 0.75rem;
-}
-
 .mt-2 {
   margin-top: 0.5rem;
+}
+
+.mt-3 {
+  margin-top: 0.75rem;
 }
 
 .mt-4 {
@@ -625,25 +613,8 @@ video {
   height: 20rem;
 }
 
-.h-72 {
-  height: 18rem;
-}
-
-.w-3 {
-  width: 0.75rem;
-}
-
 .transform {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-.columns-4 {
-  -moz-columns: 4;
-       columns: 4;
-}
-
-.flex-row {
-  flex-direction: row;
 }
 
 .flex-col {

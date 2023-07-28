@@ -1,4 +1,5 @@
 // import { IconShoppingBag } from '@tabler/icons-react';
+import { Link } from 'react-router-dom';
 
 export default function Header() {
   return (
@@ -11,12 +12,18 @@ export default function Header() {
         </div>
         <div className='flex flex-col justify-center text-center'>
           <div className='flex flex-col p-3 font-bold text-black no-underline sm:flex-row'>
-            <a href='./index.html' className='p-1 m-1 navContent'>
+            {/* <a href='./index.html' className='p-1 m-1 navContent'>
               Home
             </a>
             <a href='./about.html' className='p-1 m-1 navContent'>
               Product Detail
-            </a>
+            </a> */}
+            <Link to={'/'} className='p-1 m-1 navContent'>
+              Home
+            </Link>
+            <Link to={'/about'} className='p-1 m-1 navContent'>
+              Product Detail
+            </Link>
             <a href='https://www.adidas.co.id/pria.html' className='p-1 m-1 navContent'>
               Source
             </a>
