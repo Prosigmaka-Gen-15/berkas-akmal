@@ -1,7 +1,23 @@
 // import React from 'react';
+import { useState } from 'react';
 import MainLayout from '../layout/MainLayout';
 
 export default function AboutPage() {
+  // assign alamat lama dan setter-nya dengan useState
+  const [path, setPath] = useState(img[0].src);
+  function handlePath(newPath) {
+    const mainImg = document.querySelector('.mainImg');
+    mainImg.style.opacity = 0;
+    setTimeout(() => {
+      setPath(newPath);
+      mainImg.style.opacity = 1; // gambar menjadi jelas
+    }, 200);
+  }
+  function ChangePath(pathID) {
+    // mendapatkan alamat baru gambar
+    const newPath = img[pathID - 1].src;
+    handlePath(newPath);
+  }
   return (
     <MainLayout>
       <main className='flex justify-center p-3'>
@@ -9,38 +25,18 @@ export default function AboutPage() {
           <div className='flex justify-center containerLeft md:flex-content'>
             <div className='m-3 content'>
               <div className='flex justify-center m-1 main'>
-                <img
-                  src='/images/1.webp'
-                  className='max-w-md transition-opacity mainImg'
-                  alt='Product 1'
-                />
+                <img src={path} className='max-w-md transition-opacity mainImg' alt='Product 1' />
               </div>
               <div className='flex max-w-md m-1 mt-1 overflow-auto'>
-                <img
-                  src='/images/2.webp'
-                  className='w-24 mr-2 transition cursor-pointer flex-flexGellery hover:opacity-50'
-                  alt='Product 1'
-                />
-                <img
-                  src='/images/3.webp'
-                  className='w-24 mr-2 transition cursor-pointer flex-flexGellery hover:opacity-50'
-                  alt='Product 2'
-                />
-                <img
-                  src='/images/4.webp'
-                  className='w-24 mr-2 transition cursor-pointer flex-flexGellery hover:opacity-50'
-                  alt='Product 3'
-                />
-                <img
-                  src='/images/5.webp'
-                  className='w-24 mr-2 transition cursor-pointer flex-flexGellery hover:opacity-50'
-                  alt='Product 4'
-                />
-                <img
-                  src='/images/6.webp'
-                  className='w-24 mr-2 transition cursor-pointer flex-flexGellery hover:opacity-50'
-                  alt='Product 5'
-                />
+                {img.map((product) => (
+                  <img
+                    key={product.id}
+                    src={product.src}
+                    className='w-24 mr-2 transition cursor-pointer flex-flexGellery hover:opacity-50 miniImg'
+                    onClick={() => ChangePath(product.id)}
+                    alt={product.alt}
+                  />
+                ))}
               </div>
             </div>
           </div>
@@ -83,55 +79,16 @@ export default function AboutPage() {
                   size
                 </h1>
                 <ul className='flex'>
-                  <li className='mx-3 transition border border-black rounded-3xl hover:bg-black hover:text-white'>
-                    <a>
-                      <button className='m-2 text-lg' onClick='detailSize(0)'>
-                        All
+                  {sizes.map((size) => (
+                    <li
+                      key={size}
+                      className='mx-3 transition border border-black rounded-3xl hover:bg-black hover:text-white'
+                    >
+                      <button className='m-2 text-lg' onClick={() => detailSize(size)}>
+                        {size}
                       </button>
-                    </a>
-                  </li>
-                  <li className='mx-3 transition border border-black rounded-3xl hover:bg-black hover:text-white'>
-                    <a>
-                      <button className='m-2 text-lg' onClick='detailSize(1)'>
-                        38
-                      </button>
-                    </a>
-                  </li>
-                  <li className='mx-3 transition border border-black rounded-3xl hover:bg-black hover:text-white'>
-                    <a>
-                      <button className='m-2 text-lg' onClick='detailSize(2)'>
-                        39
-                      </button>
-                    </a>
-                  </li>
-                  <li className='mx-3 transition border border-black rounded-3xl hover:bg-black hover:text-white'>
-                    <a>
-                      <button className='m-2 text-lg' onClick='detailSize(3)'>
-                        40
-                      </button>
-                    </a>
-                  </li>
-                  <li className='mx-3 transition border border-black rounded-3xl hover:bg-black hover:text-white'>
-                    <a>
-                      <button className='m-2 text-lg' onClick='detailSize(4)'>
-                        41
-                      </button>
-                    </a>
-                  </li>
-                  <li className='mx-3 transition border border-black rounded-3xl hover:bg-black hover:text-white'>
-                    <a>
-                      <button className='m-2 text-lg' onClick='detailSize(5)'>
-                        42
-                      </button>
-                    </a>
-                  </li>
-                  <li className='mx-3 transition border border-black rounded-3xl hover:bg-black hover:text-white'>
-                    <a>
-                      <button className='m-2 text-lg' onClick='detailSize(6)'>
-                        43
-                      </button>
-                    </a>
-                  </li>
+                    </li>
+                  ))}
                 </ul>
                 <div className=''>
                   <form action='' className='flex'>
@@ -139,7 +96,7 @@ export default function AboutPage() {
                       <button
                         className='p-3 text-white bg-black rounded cursor-pointer'
                         type='button'
-                        onClick='kurang()'
+                        onClick={() => kurang()}
                       >
                         -
                       </button>
@@ -153,7 +110,7 @@ export default function AboutPage() {
                       <button
                         className='p-3 text-white bg-black rounded cursor-pointer'
                         type='button'
-                        onClick='tambah()'
+                        onClick={() => tambah()}
                       >
                         +
                       </button>
@@ -171,3 +128,82 @@ export default function AboutPage() {
     </MainLayout>
   );
 }
+
+const img = [
+  { id: 1, src: '/images/1.webp', alt: 'Product 1' },
+  { id: 2, src: '/images/2.webp', alt: 'Product 2' },
+  { id: 3, src: '/images/3.webp', alt: 'Product 3' },
+  { id: 4, src: '/images/4.webp', alt: 'Product 4' },
+  { id: 5, src: '/images/5.webp', alt: 'Product 5' },
+  { id: 6, src: '/images/6.webp', alt: 'Product 6' },
+];
+const sizes = ['All', 38, 39, 40, 41, 42, 43];
+
+const kurang = () => {
+  var input = document.getElementById('jumlah');
+  var value = parseInt(input.value);
+
+  if (value > 1) {
+    value--;
+    input.value = value;
+  }
+};
+const tambah = () => {
+  var input = document.getElementById('jumlah');
+  var value = parseInt(input.value);
+
+  value++;
+  input.value = value;
+};
+const detailSize = (number) => {
+  // list deskripsi ukuran sepatu
+  let sizeMapping = {
+    All: '38 = 24 cm | 39 = 25 cm | 40 = 25,5 cm | 41 = 26 cm | 42 = 27 cm | 43 = 28 cm',
+    38: '38 = 24 cm',
+    39: '39 = 25 cm',
+    40: '40 = 25,5 cm',
+    41: '41 = 26 cm',
+    42: '42 = 27 cm',
+    43: '43 = 28 cm',
+  };
+  // simpan nilai sesuai dengan input number
+  let newSizeDesc = sizeMapping[number];
+  // panggil properti berdasarkan id dan simpan pada variable
+  let size = document.getElementById('sizeDesc');
+  // ubah isi text yang ada pada properti
+  size.textContent = newSizeDesc;
+
+  /*=========Mengaktifkan style activeButton ketika di klik=================*/
+  const sizeLists = document.querySelectorAll('.sizeList');
+  sizeLists[number].classList.add('activeButton');
+  // Looping semua elemen
+  sizeLists.forEach((list, index) => {
+    // Jika index tidak sama dengan 3
+    if (index !== number) {
+      // Remove class active
+      list.classList.remove('activeButton');
+    }
+  });
+
+  /*=========Disabled Button ketika sudah di pilih===========*/
+  const buttons = document.querySelectorAll('.sizeProperty');
+  // Inisiasi tombol aktif saat ini
+  const activeButton = null;
+  // Add event listener pada setiap tombol
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      // Jika ini adalah tombol aktif saat ini
+      if (activeButton === this) {
+        // Nonaktifkan button dengan atribut disabled
+        this.disabled = true;
+      } else {
+        // Jika ada tombol aktif lain, aktifkan lagi
+        if (activeButton) {
+          activeButton.disabled = false;
+        }
+        // Nonaktifkan tombol ini
+        this.disabled = true;
+      }
+    });
+  });
+};
