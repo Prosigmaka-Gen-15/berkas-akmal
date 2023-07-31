@@ -1,6 +1,5 @@
 // import React from 'react';
 import { useRef, useState } from 'react';
-import MainLayout from '../layout/MainLayout';
 
 const sizes = ['All', 38, 39, 40, 41, 42, 43];
 const sizeMapping = {
@@ -59,7 +58,7 @@ export default function AboutPage() {
   };
 
   return (
-    <MainLayout>
+    <div>
       <main className='flex justify-center p-3'>
         <div className='block md:flex containerMain'>
           <div className='flex justify-center containerLeft md:flex-content'>
@@ -171,6 +170,6 @@ export default function AboutPage() {
           </div>
         </div>
       </main>
-    </MainLayout>
+    </div>
   );
 }

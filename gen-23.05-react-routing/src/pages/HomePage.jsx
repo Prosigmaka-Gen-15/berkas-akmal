@@ -1,6 +1,5 @@
 // import React from 'react';
 import Product from '../component/ProductCard';
-import MainLayout from '../layout/MainLayout';
 
 const products = [
   { id: 1, namaProduk: 'Product 1', hargaProduk: 144.99, src: '/images/1.webp' },
@@ -14,7 +13,7 @@ const products = [
 ];
 function HomePage() {
   return (
-    <MainLayout>
+    <div>
       <main>
         <div className='' id='productContainer'>
           <section id='productList' className='flex flex-wrap justify-center gap-1'>
@@ -29,7 +28,7 @@ function HomePage() {
           </section>
         </div>
       </main>
-    </MainLayout>
+    </div>
   );
 }
 
