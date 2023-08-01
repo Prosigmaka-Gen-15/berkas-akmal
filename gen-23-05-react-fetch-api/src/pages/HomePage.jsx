@@ -1,30 +1,45 @@
 // import React from 'react';
 import Product from '../component/ProductCard';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
-const products = [
-  { id: 1, namaProduk: 'Product 1', hargaProduk: 144.99, src: '/images/1.webp' },
-  { id: 2, namaProduk: 'Product 2', hargaProduk: 169.99, src: '/images/2.webp' },
-  { id: 3, namaProduk: 'Product 3', hargaProduk: 269.99, src: '/images/3.webp' },
-  { id: 4, namaProduk: 'Product 4', hargaProduk: 369.99, src: '/images/4.webp' },
-  { id: 5, namaProduk: 'Product 5', hargaProduk: 469.99, src: '/images/5.webp' },
-  { id: 6, namaProduk: 'Product 6', hargaProduk: 569.99, src: '/images/6.webp' },
-  { id: 7, namaProduk: 'Product 7', hargaProduk: 669.99, src: '/images/7.webp' },
-  { id: 8, namaProduk: 'Product 8', hargaProduk: 679.99, src: '/images/8.webp' },
-];
 function HomePage() {
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const getUsers = async () => {
+    setLoading(true);
+    try {
+      let response = await axios.get('https://fakestoreapi.com/products');
+      // let response = await axios.get(' http://localhost:3000/products');
+      setUsers(response.data);
+      setLoading(false);
+    } catch (e) {
+      setLoading(true);
+      console.log(e.message);
+    }
+  };
+
+  useEffect(() => {
+    getUsers();
+  }, []);
   return (
     <div>
       <main>
         <div className='' id='productContainer'>
           <section id='productList' className='flex flex-wrap justify-center gap-1'>
-            {products.map((product) => (
-              <Product
-                key={product.id}
-                namaProduk={product.namaProduk}
-                hargaProduk={product.hargaProduk}
-                src={product.src}
-              />
-            ))}
+            {loading ? (
+              <div className='text-3xl'>Loading . . .</div>
+            ) : (
+              users.map((product) => (
+                <Product
+                  key={product.id}
+                  namaProduk={product.title}
+                  hargaProduk={product.price}
+                  src={product.image}
+                />
+              ))
+            )}
           </section>
         </div>
       </main>
