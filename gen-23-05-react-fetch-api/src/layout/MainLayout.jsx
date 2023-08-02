@@ -7,11 +7,10 @@ import { Outlet } from 'react-router-dom';
 MainLayout.propTypes = {
   children: PropTypes.any,
 };
-function MainLayout({ children }) {
+function MainLayout() {
   return (
     <div>
       <Header />
-      {children}
       <Outlet />
       <Footer />
     </div>

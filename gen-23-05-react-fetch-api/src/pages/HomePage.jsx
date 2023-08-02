@@ -10,8 +10,8 @@ function HomePage() {
   const getUsers = async () => {
     setLoading(true);
     try {
-      let response = await axios.get('https://fakestoreapi.com/products');
-      // let response = await axios.get(' http://localhost:3000/products');
+      // let response = await axios.get('https://fakestoreapi.com/products');
+      let response = await axios.get(' http://localhost:3000/productsDetail');
       setUsers(response.data);
       setLoading(false);
     } catch (e) {
@@ -34,8 +34,10 @@ function HomePage() {
               users.map((product) => (
                 <Product
                   key={product.id}
-                  namaProduk={product.title}
-                  hargaProduk={product.price}
+                  id={product.id}
+                  namaProduk={product.item_name}
+                  hargaOri={product.original_price}
+                  hargaDiskon={product.discount_price}
                   src={product.image}
                 />
               ))

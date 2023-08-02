@@ -21,7 +21,7 @@ export default function Header() {
             <Link to={'/'} className='p-1 m-1 navContent'>
               Home
             </Link>
-            <Link to={'/about'} className='p-1 m-1 navContent'>
+            <Link to={'/about/1'} className='p-1 m-1 navContent'>
               Product Detail
             </Link>
             {/* href='https://www.adidas.co.id/pria.html' */}

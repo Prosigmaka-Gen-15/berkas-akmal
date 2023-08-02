@@ -10,7 +10,7 @@ function App() {
       <Routes>
         <Route element={<MainLayout />}>
           <Route index element={<HomePage />} />
-          <Route path='/about' element={<AboutPage />} />
+          <Route path='/about/:id' element={<AboutPage />} />
         </Route>
         <Route path='*' element={<Navigate to={'/'} />} />
       </Routes>
