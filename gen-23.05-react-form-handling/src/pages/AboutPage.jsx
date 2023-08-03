@@ -45,7 +45,8 @@ export default function AboutPage() {
   };
   useEffect(() => {
     getProduct();
-  }, [id]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   function ChangePath(pathSrc) {
     // mendapatkan alamat baru gambar
     handlePath(pathSrc);
