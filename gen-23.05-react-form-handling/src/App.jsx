@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import MainLayout from './layout/MainLayout';
-import FormPage from './pages/FormPage';
+import AdminPage from './pages/AdminPage';
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
         <Route element={<MainLayout />}>
           <Route index element={<HomePage />} />
           <Route path='/about/:id' element={<AboutPage />} />
-          <Route path='/form' element={<FormPage />} />
+          <Route path='/form' element={<AdminPage />} />
         </Route>
         <Route path='*' element={<Navigate to={'/'} />} />
       </Routes>
