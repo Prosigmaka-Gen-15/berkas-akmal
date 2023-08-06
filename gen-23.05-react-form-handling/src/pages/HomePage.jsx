@@ -13,10 +13,13 @@ function HomePage() {
       // let response = await axios.get('https://fakestoreapi.com/products');
       let response = await axios.get(' http://localhost:3000/productsDetail');
       setUsers(response.data);
-      setLoading(false);
+      // setLoading(false);
     } catch (e) {
-      setLoading(true);
+      // setLoading(false);
+      alert('Database ' + e.message);
       console.log(e.message);
+    } finally {
+      setLoading(false);
     }
   };
 

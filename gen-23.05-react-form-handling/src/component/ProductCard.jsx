@@ -20,10 +20,10 @@ export default function Product(props) {
         <h3 className='mt-4 font-bold break-words'>{namaProduk}</h3>
         <p className='font-semibold text-red-600 line-through'>Rp{hargaOri}</p>
         <p className='mt-2 font-semibold'>Rp{hargaDiskon}</p>
-        <a href='' className='inline-block p-1 mt-3 no-underline border border-black border-solid'>
-          Detail
-        </a>
       </Link>
+      <a href='' className='inline-block p-1 mt-3 no-underline border border-black border-solid'>
+        Detail
+      </a>
     </article>
   );
 }
