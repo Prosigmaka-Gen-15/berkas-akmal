@@ -1,111 +1,100 @@
+import { useState } from 'react';
 import InputBlock from './InputBlock';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-
-const schema = yup.object().shape({
-  namaItem: yup.string().required('Nama barang harus di isi'),
-  originalPrice: yup
-    .number('Harga harus menggunakan angka')
-    .positive('Harga tidak boleh minus')
-    .integer("Harga tidak boleh menggunakan koma ','")
-    .required('Harga Barang wajib di isi!')
-    .nonNullable('Harga Barang wajib di isi!'),
-  discountPrice: yup
-    .number('Harga harus menggunakan angka')
-    .nullable()
-    .positive('Harga tidak boleh minus')
-    .integer("Harga tidak boleh menggunakan koma ','"),
-  itemDesc: yup.string().required('Deskripsi Barang harus di isi'),
-  itemColor: yup.string().required('Warna Barang harus di isi'),
-  itemSize: yup.string().required('Ukuran Barang harus di isi'),
-  // imagePath: yup..required('Gambar harus di cantumkan'),
-});
 
 export default function FormBlock() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
+  const [formInput, setFormInput] = useState({
+    nama: '',
+    originalPrice: '',
+    discountPrice: '',
+    itemDesc: '',
+    color: '',
+    size: '',
+    imagePath: '',
   });
 
-  const submitForm = (data) => {
-    console.log(data);
+  const handleFormInput = (event) => {
+    setFormInput({ ...formInput, [event.target.name]: event.target.value });
+    /* ===OR=== */
+    // setFormInput((prev) => {
+    //   return {
+    //     ...prev,
+    //     [event.target.name]: event.target.value,
+    //   };
+    // });
   };
+
   return (
     <div className='flex flex-col items-center gap-2 p-2 my-2 border border-gray-700 border-solid rounded Form'>
       <div className='text-xl font-semibold TitlePage'>Form Input Barang</div>
       <div className='p-2 border border-gray-600 border-solid rounded input'>
-        <form className='flex flex-col gap-1' onSubmit={handleSubmit(submitForm)}>
+        <form className='flex flex-col gap-1'>
           <InputBlock
             id='item_name'
             name='namaItem'
             type='text'
+            value={formInput.nama}
+            onChange={handleFormInput}
             input_title='Item Name'
             placeholder='Item Name...'
-            {...register('namaItem')}
           />
-          <span>{errors.namaItem?.message}</span>
           <InputBlock
             id='harga_original'
             name='originalPrice'
             type='text'
+            value={formInput.originalPrice}
+            onChange={handleFormInput}
             input_title='Original Price'
             placeholder='Original Price...'
-            {...register('originalPrice')}
           />
-          <span>{errors.originalPrice?.message}</span>
           <InputBlock
             id='harga_discount'
             name='discountPrice'
             type='text'
+            value={formInput.discountPrice}
+            onChange={handleFormInput}
             input_title='Discount Price'
             placeholder='Discount Price...'
-            {...register('discountPrice')}
           />
-          <span>{errors.discountPrice?.message}</span>
           <InputBlock
             id='deskripsi_barang'
             name='itemDesc'
             type='text'
+            value={formInput.itemDesc}
+            onChange={handleFormInput}
             input_title='Item Description'
             placeholder='Item Description...'
-            {...register('itemDesc')}
           />
-          <span>{errors.itemDesc?.message}</span>
           <InputBlock
             id='warna_barang'
             name='itemColor'
             type='text'
+            value={formInput.color}
+            onChange={handleFormInput}
             input_title='Color Variation'
             placeholder='Color Variation...'
-            {...register('itemColor')}
           />
-          <span>{errors.itemColor?.message}</span>
           <InputBlock
             id='ukuran_barang'
             name='itemSize'
             type='text'
+            value={formInput.size}
+            onChange={handleFormInput}
             input_title='Size'
             placeholder='Size...'
-            {...register('itemSize')}
           />
-          <span>{errors.itemSize?.message}</span>
           <InputBlock
             id='lokasi_gambar'
             name='imagePath'
-            type='file'
-            accept='image/png, image/gif, image/jpeg, image/webp'
+            // type='file'
+            type='image'
+            value={formInput.imagePath}
+            onChange={handleFormInput}
             input_title='Image Path'
             placeholder='Image Path...'
-            {...register('imagePath')}
           />
-          <span>{errors.imagePath?.message}</span>
           <button
             className='px-4 py-3 mt-3 font-bold text-white rounded shadow bg-zinc-700 hover:bg-zinc-500 focus:shadow-outline focus:outline-none hover:text-gray-700'
-            type='submit'
+            type='button'
           >
             Input Barang
           </button>

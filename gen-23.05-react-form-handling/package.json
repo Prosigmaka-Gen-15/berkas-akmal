@@ -15,12 +15,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.2.0",
     "@tabler/icons-react": "^2.29.0",
     "axios": "^1.4.0",
     "npm-run-all": "^4.1.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "tw-elements": "^1.0.0-beta3"
+    "react-hook-form": "^7.45.4",
+    "tw-elements": "^1.0.0-beta3",
+    "yup": "^1.2.0"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.4",
