@@ -16,7 +16,7 @@ function ListProduct() {
     setLoading(true);
     try {
       axios
-        .get('productsDetail')
+        .get('/productsDetail')
         .then((res) => setProduct(res.data))
         .catch((err) => {
           alert(err);
