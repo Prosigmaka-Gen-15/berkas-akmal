@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import axios from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 
 const schema = yup.object().shape({
@@ -67,8 +67,13 @@ export default function Form() {
   }, []);
   return (
     <div className='items-center gap-2 p-2 my-2 border border-gray-700 border-solid rounded Form'>
-      <div className='flex justify-center my-1 text-xl font-semibold TitlePage'>
-        Form Input Barang
+      <Link to={'/admin'}>
+        <span className='absolute p-[1px] m-1 rounded border border-black hover:bg-gray-400 hover:text-zinc-50'>
+          Back
+        </span>
+      </Link>
+      <div className='flex justify-center'>
+        <span className='my-1 text-xl font-semibold TitlePage'>Form Input Barang</span>
       </div>
       <div className='p-2 border border-gray-600 border-solid rounded input'>
         <form className='flex flex-col gap-1' onSubmit={handleSubmit(submitForm)}>

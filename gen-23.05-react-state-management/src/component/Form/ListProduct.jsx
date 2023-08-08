@@ -40,12 +40,19 @@ function ListProduct() {
   };
   return (
     <div className='ListProductContainer'>
-      <div className='flex flex-row justify-center p-1 m-1'>
-        <span className='Title'>List Product</span>
-        <span className='addProduct'>List Product</span>
+      <div className='flex justify-center'>
+        <div className='flex flex-row justify-center p-1 m-1'>
+          <span className='p-1 text-xl Title'>List Product</span>
+        </div>
       </div>
       <table className='flex justify-center m-1'>
         <tbody className='ListProduct'>
+          <Link
+            to={'/admin/form'}
+            className='bg-green-600 addProduct p-[1px] m-1 rounded border border-black hover:bg-green-500'
+          >
+            <button className='p-1 '>Add Product</button>
+          </Link>
           <tr className='border border-black border-solid'>
             <th>id</th>
             <th>namaItem</th>
