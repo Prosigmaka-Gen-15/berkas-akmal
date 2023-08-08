@@ -8,6 +8,7 @@ import AdminPage from './pages/AdminPage';
 import Form from './component/Form/Form';
 import ListProduct from './component/Form/ListProduct';
 import axios from 'axios';
+import ChartPage from './pages/ChartPage';
 
 axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 // axios.defaults.baseURL = 'http://localhost:3000';
@@ -23,6 +24,7 @@ function App() {
             <Route index element={<ListProduct />} />
             <Route path='form/:productId?' element={<Form />} />
           </Route>
+          <Route path='/chart' element={<ChartPage />} />
         </Route>
         <Route path='*' element={<Navigate to={'/'} />} />
       </Routes>

@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addItem } from '../component/Chart/slices/cartSlice';
 
 //deklarasi tipe data
 Product.propTypes = {
@@ -12,7 +14,23 @@ Product.propTypes = {
 };
 
 export default function Product(props) {
+  const dispatch = useDispatch();
   const { src, hargaOri = '0', namaProduk = 'Produk', hargaDiskon = '0', id } = props;
+
+  const handleAddToChart = () => {
+    const data = {
+      id: props.id,
+    };
+    try {
+      dispatch(addItem(data));
+      console.log(data);
+    } catch (err) {
+      alert(err);
+      console.log(err);
+    } finally {
+      console.log('Add Item Selesai');
+    }
+  };
   return (
     <article className='flex flex-col items-center justify-center max-w-xs p-3 m-4 text-center transform border border-gray-300 border-solid hover:scale-105 hover:shadow hover:border-gray-600'>
       <Link to={'/product/' + id} className='flex flex-col items-center justify-center text-center'>
@@ -27,6 +45,9 @@ export default function Product(props) {
       >
         Detail
       </Link>
+      <div className='p-1 m-1 mt-2 border border-black '>
+        <button onClick={() => handleAddToChart()}>Add To Cart</button>
+      </div>
     </article>
   );
 }

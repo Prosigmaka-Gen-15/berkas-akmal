@@ -1,26 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-// import AboutPage from './pages/AboutPage.jsx';
-// import HomePage from './pages/HomePage';
-// import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import App from './App';
-
-// mendaftarkan halaman lain
-// const router = createBrowserRouter([
-//   {
-//     path: '/',
-//     element: <HomePage />,
-//   },
-//   {
-//     path: 'about',
-//     element: <AboutPage />,
-//   },
-// ]);
+// import chart from './component/Chart/chart';
+import store from './component/Chart/store';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    {/* <RouterProvider router={router} /> */}
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
 );
