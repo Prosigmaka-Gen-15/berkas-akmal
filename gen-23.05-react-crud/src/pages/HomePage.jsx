@@ -11,7 +11,7 @@ function HomePage() {
     setLoading(true);
     try {
       // let response = await axios.get('https://fakestoreapi.com/products');
-      let response = await axios.get(' http://localhost:3000/productsDetail');
+      let response = await axios.get('/productsDetail');
       setUsers(response.data);
       // setLoading(false);
     } catch (e) {

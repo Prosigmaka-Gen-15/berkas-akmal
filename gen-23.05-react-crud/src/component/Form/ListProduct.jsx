@@ -12,11 +12,11 @@ function ListProduct() {
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const getUsers = () => {
+  const getProducts = () => {
     setLoading(true);
     try {
       axios
-        .get('http://localhost:3000/productsDetail')
+        .get('productsDetail')
         .then((res) => setProduct(res.data))
         .catch((err) => {
           alert(err);
@@ -30,18 +30,21 @@ function ListProduct() {
     }
   };
   useEffect(() => {
-    getUsers();
+    getProducts();
   }, []);
-  const deletePerson = (productId) => {
+  const deleteProduct = (productId) => {
     axios
-      .delete('http://localhost:3000/productsDetail/' + productId)
-      .then(() => getUsers())
+      .delete('/productsDetail/' + productId)
+      .then(() => getProducts())
       .catch((err) => alert(err));
   };
   return (
     <div className='ListProductContainer'>
-      <div className='flex justify-center Title'>List Product</div>
-      <table className='flex m-1 justify-center'>
+      <div className='flex flex-row justify-center p-1 m-1'>
+        <span className='Title'>List Product</span>
+        <span className='addProduct'>List Product</span>
+      </div>
+      <table className='flex justify-center m-1'>
         <tbody className='ListProduct'>
           <tr className='border border-black border-solid'>
             <th>id</th>
@@ -68,18 +71,18 @@ function ListProduct() {
                 <td className='max-w-[200px] max-h-0 overflow-hidden text-justify'>
                   {product.itemDesc}
                 </td>
-                <td>{product.color}</td>
-                <td>{product.size}</td>
+                <td>{product.itemColor}</td>
+                <td>{product.itemSize}</td>
                 <td>
                   <Link to={'/admin/form/' + product.id}>
-                    <button className='hover:bg-blue-400 border border-solid border-black p-1 rounded bg-blue-500 text-white'>
+                    <button className='p-1 text-white bg-blue-500 border border-black border-solid rounded hover:bg-blue-400'>
                       Edit
                     </button>
                   </Link>
                   &nbsp;|&nbsp;
                   <button
-                    onClick={() => deletePerson(product.id)}
-                    className='hover:bg-red-400 border border-solid border-black p-1 rounded bg-red-500 text-white'
+                    onClick={() => deleteProduct(product.id)}
+                    className='p-1 text-white bg-red-500 border border-black border-solid rounded hover:bg-red-400'
                   >
                     Delete
                   </button>

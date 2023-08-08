@@ -708,6 +708,14 @@ select {
   left: 1rem;
 }
 
+.left-1 {
+  left: 0.25rem;
+}
+
+.left-10 {
+  left: 2.5rem;
+}
+
 .z-\[1\] {
   z-index: 1;
 }
@@ -867,18 +875,6 @@ select {
   height: 626px;
 }
 
-.h-\[600px\] {
-  height: 600px;
-}
-
-.h-\[400px\] {
-  height: 400px;
-}
-
-.h-\[200px\] {
-  height: 200px;
-}
-
 .max-h-0 {
   max-height: 0px;
 }
@@ -893,14 +889,6 @@ select {
 
 .w-96 {
   width: 24rem;
-}
-
-.w-\[300px\] {
-  width: 300px;
-}
-
-.w-\[600px\] {
-  width: 600px;
 }
 
 .max-w-\[200px\] {
@@ -925,6 +913,10 @@ select {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.flex-row {
+  flex-direction: row;
 }
 
 .flex-col {

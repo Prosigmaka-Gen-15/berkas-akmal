@@ -34,7 +34,7 @@ export default function AboutPage() {
     // setLoading(true);
     try {
       // let response = await axios.get('https://fakestoreapi.com/products');
-      let response = await axios.get(' http://localhost:3000/productsDetail/' + id);
+      let response = await axios.get('/productsDetail/' + id);
       setProduct(response.data);
       setPath(response.data.imagePath);
       // setLoading(false);

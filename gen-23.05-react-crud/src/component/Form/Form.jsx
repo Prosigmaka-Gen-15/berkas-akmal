@@ -38,9 +38,9 @@ export default function Form() {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const getPersonData = () => {
+  const getProductData = () => {
     axios
-      .get('http://localhost:3000/productsDetail/' + productId)
+      .get('/productsDetail/' + productId)
       .then((res) => {
         setValue('namaItem', res.data.namaItem);
         setValue('originalPrice', res.data.originalPrice);
@@ -54,8 +54,8 @@ export default function Form() {
   };
   const submitForm = async (data) => {
     try {
-      if (productId) await axios.patch('http://localhost:3000/productsDetail/' + productId, data);
-      else await axios.post('http://localhost:3000/productsDetail', data);
+      if (productId) await axios.patch('/productsDetail/' + productId, data);
+      else await axios.post('/productsDetail', data);
       navigate('/admin');
     } catch (err) {
       alert(err);
@@ -63,7 +63,7 @@ export default function Form() {
     }
   };
   useEffect(() => {
-    if (productId) getPersonData();
+    if (productId) getProductData();
   }, []);
   return (
     <div className='items-center gap-2 p-2 my-2 border border-gray-700 border-solid rounded Form'>
