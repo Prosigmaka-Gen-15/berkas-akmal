@@ -4,6 +4,9 @@ import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import MainLayout from './layout/MainLayout';
 import AdminPage from './pages/AdminPage';
+// import CreateProductForm from './component/Form/CreateProductForm';
+import Form from './component/Form/Form';
+import ListProduct from './component/Form/ListProduct';
 
 function App() {
   return (
@@ -11,8 +14,11 @@ function App() {
       <Routes>
         <Route element={<MainLayout />}>
           <Route index element={<HomePage />} />
-          <Route path='/about/:id' element={<AboutPage />} />
-          <Route path='/admin' element={<AdminPage />} />
+          <Route path='/product/:id' element={<AboutPage />} />
+          <Route path='/admin' element={<AdminPage />}>
+            <Route index element={<ListProduct />} />
+            <Route path='form/:productId?' element={<Form />} />
+          </Route>
         </Route>
         <Route path='*' element={<Navigate to={'/'} />} />
       </Routes>

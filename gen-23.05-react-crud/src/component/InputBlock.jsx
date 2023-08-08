@@ -1,6 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+/**
+ * Block input untuk Form pada Admin page
+ */
+
 /* Manual */
 
 // export default function InputBlock(props) {

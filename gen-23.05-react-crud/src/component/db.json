@@ -2,123 +2,123 @@
   "productsDetail": [
     {
       "id": 1,
-      "item_name": "GATA 1012",
-      "original_price": "750.000,00",
-      "discount_price": "550.000,00",
-      "item_desc": "Sepatu pria berbahan kulit dengan desain elegan untuk penampilan eksklusif.",
-      "color": "Hitam, Coklat",
-      "size": "38 sampai 43",
-      "image": "/images/1.webp"
+      "namaItem": "GATA 1012",
+      "originalPrice": "750.000,00",
+      "discountPrice": "550.000,00",
+      "itemDesc": "Sepatu pria berbahan kulit dengan desain elegan untuk penampilan eksklusif.",
+      "itemColor": "Hitam, Coklat",
+      "itemSize": "38 sampai 43",
+      "imagePath": "/images/1.webp"
     },
     {
       "id": 2,
-      "item_name": "ADIDAS Fluidstreet",
-      "original_price": "899.000,00",
-      "discount_price": "799.000,00",
-      "item_desc": "Sepatu olahraga performa tinggi dari Adidas dengan bantalan yang empuk.",
-      "color": "Hitam, Putih, Biru",
-      "size": "40 sampai 44",
-      "image": "/images/2.webp"
+      "namaItem": "ADIDAS Fluidstreet",
+      "originalPrice": "899.000,00",
+      "discountPrice": "799.000,00",
+      "itemDesc": "Sepatu olahraga performa tinggi dari Adidas dengan bantalan yang empuk.",
+      "itemColor": "Hitam, Putih, Biru",
+      "itemSize": "40 sampai 44",
+      "imagePath": "/images/2.webp"
     },
     {
       "id": 3,
-      "item_name": "EIGER Trailseek",
-      "original_price": "1.500.000,00",
-      "discount_price": "1.350.000,00",
-      "item_desc": "Sepatu gunung dari Eiger cocok untuk pendakian dan trekking.",
-      "color": "Coklat, Hijau",
-      "size": "38 sampai 43",
-      "image": "/images/3.webp"
+      "namaItem": "EIGER Trailseek",
+      "originalPrice": "1.500.000,00",
+      "discountPrice": "1.350.000,00",
+      "itemDesc": "Sepatu gunung dari Eiger cocok untuk pendakian dan trekking.",
+      "itemColor": "Coklat, Hijau",
+      "itemSize": "38 sampai 43",
+      "imagePath": "/images/3.webp"
     },
     {
       "id": 4,
-      "item_name": "NIKE Flex",
-      "original_price": "699.000,00",
-      "discount_price": "549.000,00",
-      "item_desc": "Sepatu santai dari Nike dengan bahan mesh yang lembut dan nyaman.",
-      "color": "Biru, Oranye",
-      "size": "39 sampai 44",
-      "image": "/images/4.webp"
+      "namaItem": "NIKE Flex",
+      "originalPrice": "699.000,00",
+      "discountPrice": "549.000,00",
+      "itemDesc": "Sepatu santai dari Nike dengan bahan mesh yang lembut dan nyaman.",
+      "itemColor": "Biru, Oranye",
+      "itemSize": "39 sampai 44",
+      "imagePath": "/images/4.webp"
     },
     {
       "id": 5,
-      "item_name": "REEBOK Trilux",
-      "original_price": "799.000,00",
-      "discount_price": "629.000,00",
-      "item_desc": "Sepatu olahraga dari Reebok dengan teknologi Grid yang memberikan performa optima.",
-      "color": "Hitam, Putih",
-      "size": "38 sampai 43",
-      "image": "/images/5.webp"
+      "namaItem": "REEBOK Trilux",
+      "originalPrice": "799.000,00",
+      "discountPrice": "629.000,00",
+      "itemDesc": "Sepatu olahraga dari Reebok dengan teknologi Grid yang memberikan performa optima.",
+      "itemColor": "Hitam, Putih",
+      "itemSize": "38 sampai 43",
+      "imagePath": "/images/5.webp"
     },
     {
       "id": 6,
-      "item_name": "SKECHERS Hyper",
-      "original_price": "899.000,00",
-      "discount_price": "629.000,00",
-      "item_desc": "Sepatu kasual Skechers ringan dan lentur cocok untuk jalan-jalan.",
-      "color": "Biru, Abu-abu",
-      "size": "40 sampai 43",
-      "image": "/images/6.webp"
+      "namaItem": "SKECHERS Hyper",
+      "originalPrice": "899.000,00",
+      "discountPrice": "629.000,00",
+      "itemDesc": "Sepatu kasual Skechers ringan dan lentur cocok untuk jalan-jalan.",
+      "itemColor": "Biru, Abu-abu",
+      "itemSize": "40 sampai 43",
+      "imagePath": "/images/6.webp"
     },
     {
       "id": 7,
-      "item_name": "NEW BALANCE 420",
-      "original_price": "899.000,00",
-      "discount_price": "799.000,00",
-      "item_desc": "Sepatu New Balance model klasik dengan bahan suede yang lembut.",
-      "color": "Biru, Hijau",
-      "size": "39 sampai 43",
-      "image": "/images/7.webp"
+      "namaItem": "NEW BALANCE 420",
+      "originalPrice": "899.000,00",
+      "discountPrice": "799.000,00",
+      "itemDesc": "Sepatu New Balance model klasik dengan bahan suede yang lembut.",
+      "itemColor": "Biru, Hijau",
+      "itemSize": "39 sampai 43",
+      "imagePath": "/images/7.webp"
     },
     {
       "id": 8,
-      "item_name": "PUMA Future Rider",
-      "original_price": "1.200.000,00",
-      "discount_price": "899.000,00",
-      "item_desc": "Sepatu berdesain futuristik dari Puma dengan bantalan empuk.",
-      "color": "Hitam, Putih",
-      "size": "38 sampai 44",
-      "image": "/images/8.webp"
+      "namaItem": "PUMA Future Rider",
+      "originalPrice": "1.200.000,00",
+      "discountPrice": "899.000,00",
+      "itemDesc": "Sepatu berdesain futuristik dari Puma dengan bantalan empuk.",
+      "itemColor": "Hitam, Putih",
+      "itemSize": "38 sampai 44",
+      "imagePath": "/images/8.webp"
     },
     {
       "id": 9,
-      "item_name": "VANS Old Skool",
-      "original_price": "799.000,00",
-      "discount_price": "629.000,00",
-      "item_desc": "Sepatu klasik Vans dengan tali leher ganda yang khas.",
-      "color": "Hitam, Merah",
-      "size": "38 sampai 43",
-      "image": "/images/9.webp"
+      "namaItem": "VANS Old Skool",
+      "originalPrice": "799.000,00",
+      "discountPrice": "629.000,00",
+      "itemDesc": "Sepatu klasik Vans dengan tali leher ganda yang khas.",
+      "itemColor": "Hitam, Merah",
+      "itemSize": "38 sampai 43",
+      "imagePath": "/images/9.webp"
     },
     {
       "id": 10,
-      "item_name": "CONVERSE Chuck Taylor",
-      "original_price": "649.000,00",
-      "discount_price": "549.000,00",
-      "item_desc": "Sepatu Converse model asli Chuck Taylor dengan kanvas ringan.",
-      "color": "Hitam, Putih, Merah",
-      "size": "38 sampai 44",
-      "image": "/images/10.webp"
+      "namaItem": "CONVERSE Chuck Taylor",
+      "originalPrice": "649.000,00",
+      "discountPrice": "549.000,00",
+      "itemDesc": "Sepatu Converse model asli Chuck Taylor dengan kanvas ringan.",
+      "itemColor": "Hitam, Putih, Merah",
+      "itemSize": "38 sampai 44",
+      "imagePath": "/images/10.webp"
     },
     {
       "id": 11,
-      "item_name": "LOPEZ Loafers",
-      "original_price": "600.000,00",
-      "discount_price": "450.000,00",
-      "item_desc": "Sepatu kulit model loafers dari Lopez cocok untuk outfit formal.",
-      "color": "Hitam, Coklat",
-      "size": "39 sampai 44",
-      "image": "/images/11.webp"
+      "namaItem": "LOPEZ Loafers",
+      "originalPrice": "600.000,00",
+      "discountPrice": "450.000,00",
+      "itemDesc": "Sepatu kulit model loafers dari Lopez cocok untuk outfit formal.",
+      "itemColor": "Hitam, Coklat",
+      "itemSize": "39 sampai 44",
+      "imagePath": "/images/11.webp"
     },
     {
       "id": 12,
-      "item_name": "ROCKPORT Chranson",
-      "original_price": "899.000,00",
-      "discount_price": "799.000,00",
-      "item_desc": "Sepatu Rockport model Chranson yang nyaman digunakan untuk bekerja.",
-      "color": "Hitam",
-      "size": "40 sampai 43",
-      "image": "/images/12.webp"
+      "namaItem": "ROCKPORT Chranson",
+      "originalPrice": "899.000,00",
+      "discountPrice": "799.000,00",
+      "itemDesc": "Sepatu Rockport model Chranson yang nyaman digunakan untuk bekerja.",
+      "itemColor": "Hitam",
+      "itemSize": "40 sampai 43",
+      "imagePath": "/images/12.webp"
     }
   ]
 }

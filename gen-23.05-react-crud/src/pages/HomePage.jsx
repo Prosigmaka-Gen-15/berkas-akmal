@@ -38,10 +38,10 @@ function HomePage() {
                 <Product
                   key={product.id}
                   id={product.id}
-                  namaProduk={product.item_name}
-                  hargaOri={product.original_price}
-                  hargaDiskon={product.discount_price}
-                  src={product.image}
+                  namaProduk={product.namaItem}
+                  hargaOri={product.originalPrice}
+                  hargaDiskon={product.discountPrice}
+                  src={product.imagePath}
                 />
               ))
             )}
