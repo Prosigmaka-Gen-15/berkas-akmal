@@ -7,6 +7,9 @@ import AdminPage from './pages/AdminPage';
 // import CreateProductForm from './component/Form/CreateProductForm';
 import Form from './component/Form/Form';
 import ListProduct from './component/Form/ListProduct';
+import axios from 'axios';
+
+axios.defaults.baseURL = import.meta.env.VITE_API_URL
 
 function App() {
   return (
