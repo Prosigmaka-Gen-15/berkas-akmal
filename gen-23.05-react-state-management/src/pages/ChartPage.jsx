@@ -8,19 +8,27 @@ export default function ChartPage() {
       <div className='flex justify-center ChartTitle'>
         <span className='my-1 text-xl font-semibold TitlePage'>Chart List</span>
       </div>
-      <div>
-        <table>
+      <div className='flex justify-center'>
+        <table className='border border-black border-solid'>
+          <thead>
+            <tr>
+              <th className='border border-black border-solid'>Nama Barang</th>
+              <th className='border border-black border-solid'>Harga Barang</th>
+            </tr>
+          </thead>
           <tbody>
-            <tr>
-              <th>ID</th>
-            </tr>
-            <tr>
-              {cartItems.map((product, index) => {
-                <td key={index}>
-                  <span>{product.id}</span>
-                </td>;
-              })}
-            </tr>
+            {Object.keys(cartItems).map((arr, index) => {
+              const product = cartItems[arr];
+              // console.log(product);
+              return (
+                <tr key={index}>
+                  <td className='border border-black border-solid'>{product.value.nama}</td>
+                  <td className='text-center border border-black border-solid'>
+                    {product.value.harga}
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>

@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import cartSlice from './slices/cartSlice';
+import cartReducer from './slices/cartSlice';
 // cartReducer
 const chart = configureStore({
   reducer: {
-    cart: cartSlice,
+    cart: cartReducer,
   },
 });
 

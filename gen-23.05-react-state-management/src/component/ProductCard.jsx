@@ -18,9 +18,7 @@ export default function Product(props) {
   const { src, hargaOri = '0', namaProduk = 'Produk', hargaDiskon = '0', id } = props;
 
   const handleAddToChart = () => {
-    const data = {
-      id: props.id,
-    };
+    const data = { value: { nama: namaProduk, harga: hargaDiskon } };
     try {
       dispatch(addItem(data));
       console.log(data);
