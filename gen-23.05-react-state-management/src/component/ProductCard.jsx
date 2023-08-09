@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { addItem } from '../component/Chart/slices/cartSlice';
+import { addItemToCart } from '../component/Chart/slices/cartSlice';
 
 //deklarasi tipe data
 Product.propTypes = {
   src: PropTypes.string,
   namaProduk: PropTypes.string,
-  hargaDiskon: PropTypes.string,
-  hargaOri: PropTypes.string,
+  hargaDiskon: PropTypes.number,
+  hargaOri: PropTypes.number,
   id: PropTypes.number,
   imgUrl: PropTypes.string,
 };
@@ -18,10 +18,10 @@ export default function Product(props) {
   const { src, hargaOri = '0', namaProduk = 'Produk', hargaDiskon = '0', id } = props;
 
   const handleAddToChart = () => {
-    const data = { value: { nama: namaProduk, harga: hargaDiskon } };
+    const data = { id: id, nama: namaProduk, harga: hargaDiskon };
     try {
-      dispatch(addItem(data));
-      console.log(data);
+      dispatch(addItemToCart(data));
+      // console.log(data);
     } catch (err) {
       alert(err);
       console.log(err);
@@ -34,8 +34,12 @@ export default function Product(props) {
       <Link to={'/product/' + id} className='flex flex-col items-center justify-center text-center'>
         <img src={src} className='object-contain h-80 w-96' alt='' />
         <h3 className='mt-4 font-bold break-words'>{namaProduk}</h3>
-        <p className='font-semibold text-red-600 line-through'>Rp{hargaOri}</p>
-        <p className='mt-2 font-semibold'>Rp{hargaDiskon}</p>
+        <p className='font-semibold text-red-600 line-through'>
+          {hargaOri.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}
+        </p>
+        <p className='mt-2 font-semibold'>
+          {hargaDiskon.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}
+        </p>
       </Link>
       <Link
         to={'/product/' + id}

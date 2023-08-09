@@ -114,10 +114,10 @@ export default function AboutPage() {
               </div>
               <div className='flex justify-center product_price md:justify-start'>
                 <p className='inline-block mx-3 my-1 text-xl font-semibold text-gray-600 line-through'>
-                  Rp{product.originalPrice}
+                  Rp {product.originalPrice}
                 </p>
                 <p className='inline-block my-1 text-xl font-semibold text-red-500'>
-                  Rp{product.discountPrice}
+                  Rp {product.discountPrice}
                 </p>
               </div>
               <div className='product_description'>
@@ -155,7 +155,7 @@ export default function AboutPage() {
                   ))}
                 </ul>
                 <div className=''>
-                  <form action='' className='flex'>
+                  <form className='flex'>
                     <div className='m-3 border border-black rounded-lg order_quantity'>
                       <button
                         className='p-3 text-white bg-black rounded cursor-pointer'

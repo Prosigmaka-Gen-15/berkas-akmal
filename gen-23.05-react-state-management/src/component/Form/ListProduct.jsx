@@ -40,19 +40,19 @@ function ListProduct() {
   };
   return (
     <div className='ListProductContainer'>
-      <div className='flex justify-center'>
+      <div className='flex flex-col justify-center'>
         <div className='flex flex-row justify-center p-1 m-1'>
           <span className='p-1 text-xl Title'>List Product</span>
         </div>
+        <Link
+          to={'/admin/form'}
+          className='bg-green-600 addProduct p-[1px] m-1 flex justify-center rounded border border-black hover:bg-green-500'
+        >
+          <button className='p-1 '>Add Product</button>
+        </Link>
       </div>
       <table className='flex justify-center m-1'>
         <tbody className='ListProduct'>
-          <Link
-            to={'/admin/form'}
-            className='bg-green-600 addProduct p-[1px] m-1 rounded border border-black hover:bg-green-500'
-          >
-            <button className='p-1 '>Add Product</button>
-          </Link>
           <tr className='border border-black border-solid'>
             <th>id</th>
             <th>namaItem</th>
@@ -73,8 +73,18 @@ function ListProduct() {
               <tr key={product.id} className='text-center border border-black border-solid '>
                 <td>{product.id}</td>
                 <td>{product.namaItem}</td>
-                <td>{product.originalPrice}</td>
-                <td>{product.discountPrice}</td>
+                <td>
+                  {product.originalPrice.toLocaleString('id-ID', {
+                    style: 'currency',
+                    currency: 'IDR',
+                  })}
+                </td>
+                <td>
+                  {product.discountPrice.toLocaleString('id-ID', {
+                    style: 'currency',
+                    currency: 'IDR',
+                  })}
+                </td>
                 <td className='max-w-[200px] max-h-0 overflow-hidden text-justify'>
                   {product.itemDesc}
                 </td>
