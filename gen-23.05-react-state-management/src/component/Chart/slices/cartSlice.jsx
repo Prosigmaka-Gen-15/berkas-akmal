@@ -9,7 +9,13 @@ const cartSlice = createSlice({
   reducers: {
     addItemToCart(state, action) {
       // state.push(action.payload);
-      return [...state, action.payload];
+      const isProductExist = state.find((product) => action.payload.id == product.id);
+      if (!isProductExist) {
+        alert('Barang berhasil di tambahkan');
+        return [...state, action.payload];
+      } else {
+        alert('Barang sudah ada di keranjang');
+      }
     },
     removeItemFromCart(state, action) {
       // hapus berdasarkan id
@@ -21,6 +27,9 @@ const cartSlice = createSlice({
         }
       }
     },
+    // incrementQuantity(state, action){
+
+    // }
   },
 });
 

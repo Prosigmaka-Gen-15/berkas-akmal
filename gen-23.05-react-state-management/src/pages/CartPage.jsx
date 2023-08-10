@@ -19,6 +19,7 @@ export default function CartPage() {
             <tr>
               <th className='border border-black border-solid'>Nama Barang</th>
               <th className='border border-black border-solid'>Harga Barang</th>
+              <th className='border border-black border-solid'>Jumlah Barang</th>
               <th className='border border-black border-solid'>Action</th>
             </tr>
           </thead>
@@ -30,8 +31,10 @@ export default function CartPage() {
                 <tr key={index}>
                   <td className='border border-black border-solid'>{product.nama}</td>
                   <td className='text-center border border-black border-solid'>{product.harga}</td>
+                  <td className='text-center border border-black border-solid'>jumlahTemp</td>
                   <td className='text-center border border-black border-solid'>
                     <button
+                      className='border border-black border-solid p-1 m-1'
                       onClick={() => {
                         handleRemoveItem(product.id);
                       }}

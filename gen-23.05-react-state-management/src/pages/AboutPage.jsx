@@ -26,27 +26,25 @@ export default function AboutPage() {
   const { id } = useParams();
   const [product, setProduct] = useState([]);
   const [path, setPath] = useState();
-  // const [loading, setLoading] = useState(false);
   const mainImg = useRef(null);
   const sizeRef = useRef(null);
   const jumlahIn = useRef(null);
+
   const getProduct = async () => {
-    // setLoading(true);
     try {
-      // let response = await axios.get('https://fakestoreapi.com/products');
       let response = await axios.get('/productsDetail/' + id);
       setProduct(response.data);
       setPath(response.data.imagePath);
-      // setLoading(false);
     } catch (e) {
-      // setLoading(true);
       console.log(e.message);
     }
   };
+
   useEffect(() => {
     getProduct();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   function ChangePath(pathSrc) {
     // mendapatkan alamat baru gambar
     handlePath(pathSrc);
@@ -77,11 +75,14 @@ export default function AboutPage() {
     value++;
     jumlahIn.current.value = value;
   };
+  const oriPrice = product.originalPrice;
+  const discPrice = product.discountPrice;
 
   return (
     <div>
       <main className='flex justify-center p-3'>
         <div className='block md:flex containerMain'>
+          {/* Rencana di pisahkan */}
           <div className='flex justify-center containerLeft md:flex-content'>
             <div className='m-3 content'>
               <div className='flex justify-center m-1 main'>
@@ -105,6 +106,7 @@ export default function AboutPage() {
               </div>
             </div>
           </div>
+          {/* End-Rencana */}
           <div className='flex-1 mt-10 containerRight md:mt-0'>
             <div className='m-3 md:max-w-xl content'>
               <div className='product_title'>
@@ -114,10 +116,10 @@ export default function AboutPage() {
               </div>
               <div className='flex justify-center product_price md:justify-start'>
                 <p className='inline-block mx-3 my-1 text-xl font-semibold text-gray-600 line-through'>
-                  Rp {product.originalPrice}
+                  {oriPrice.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}
                 </p>
                 <p className='inline-block my-1 text-xl font-semibold text-red-500'>
-                  Rp {product.discountPrice}
+                  {discPrice.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}
                 </p>
               </div>
               <div className='product_description'>
