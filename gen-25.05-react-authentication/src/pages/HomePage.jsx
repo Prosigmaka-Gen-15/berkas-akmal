@@ -4,15 +4,20 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 function HomePage() {
-  const [users, setUsers] = useState([]);
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const getUsers = async () => {
+  const getProducts = async () => {
     setLoading(true);
     try {
-      // let response = await axios.get('https://fakestoreapi.com/products');
-      let response = await axios.get('/productsDetail');
-      setUsers(response.data);
+      axios
+        .get('/productsDetail')
+        // .get('/660/productsDetail')
+        .then((res) => setProducts(res.data))
+        .catch((err) => {
+          alert('User harus login');
+          console.log(err.data);
+        });
       // setLoading(false);
     } catch (e) {
       // setLoading(false);
@@ -24,7 +29,7 @@ function HomePage() {
   };
 
   useEffect(() => {
-    getUsers();
+    getProducts();
   }, []);
   return (
     <div>
@@ -34,7 +39,7 @@ function HomePage() {
             {loading ? (
               <div className='text-3xl'>Loading . . .</div>
             ) : (
-              users.map((product) => (
+              products.map((product) => (
                 <Product
                   key={product.id}
                   id={product.id}

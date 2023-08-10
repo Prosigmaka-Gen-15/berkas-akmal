@@ -120,5 +120,13 @@
       "itemSize": "40 sampai 43",
       "imagePath": "/images/12.webp"
     }
+  ],
+  "users": [
+    {
+      "email": "asd@gmail.com",
+      "password": "$2a$10$mXxQ6Mi4bY3xDWrgIjQUoOvsgUlIDBtfKOyvj7mlkYsIbfvBXU/n2",
+      "username": "Akmal",
+      "id": 1
+    }
   ]
 }

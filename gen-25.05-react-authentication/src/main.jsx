@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import { Provider } from 'react-redux';
 import App from './App';
-// import chart from './component/Chart/chart';
-import store from './component/Chart/store';
+// import chart from './component/Redux/chart';
+import store from './component/Redux/store';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

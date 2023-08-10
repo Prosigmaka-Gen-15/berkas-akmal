@@ -33,10 +33,12 @@ function ListProduct() {
     getProducts();
   }, []);
   const deleteProduct = (productId) => {
-    axios
-      .delete('/productsDetail/' + productId)
-      .then(() => getProducts())
-      .catch((err) => alert(err));
+    if (confirm('Anda yakin?')) {
+      axios
+        .delete('/productsDetail/' + productId)
+        .then(() => getProducts())
+        .catch((err) => alert(err));
+    }
   };
   return (
     <div className='ListProductContainer'>

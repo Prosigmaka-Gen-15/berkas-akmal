@@ -1,11 +1,15 @@
 import { useRef } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { resetAuthData } from '../component/Redux/slices/authSlice';
 /*
 z-index: 
 - auto: none
 - 1: sideNavbar
 */
 export default function FormPage() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const menuContainer = useRef(null);
 
   const toggleMenu = () => {
@@ -13,6 +17,13 @@ export default function FormPage() {
     if (el) {
       el.style.height = el.style.height === '626px' ? '0px' : (el.style.height = '626px');
     }
+  };
+
+  const user = useSelector((state) => state.auth.user);
+
+  const handleLogout = () => {
+    dispatch(resetAuthData());
+    navigate('/');
   };
   return (
     <div className='flex justify-center mx-2 FormContainer'>
@@ -54,6 +65,19 @@ export default function FormPage() {
       </div>
       {/* Content */}
       <div className='menuContentContainer'>
+        <div className='gap-1 p-1 m-1'>
+          Email: {user.email} <br />
+          User Name: {user.username} <br />
+          <button
+            onClick={handleLogout}
+            className='p-1 m-1 border border-black border-solid rounded-md'
+          >
+            Logout
+          </button>
+          <Link to={'/'}>
+            <button className='p-1 m-1 border border-black border-solid rounded-md'>Home</button>
+          </Link>
+        </div>
         <Outlet />
       </div>
     </div>

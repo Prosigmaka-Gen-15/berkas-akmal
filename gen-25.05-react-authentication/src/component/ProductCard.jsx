@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { addItemToCart } from '../component/Chart/slices/cartSlice';
+import { addItemToCart } from '../component/Redux/slices/cartSlice';
 
 //deklarasi tipe data
 Product.propTypes = {
@@ -17,7 +17,7 @@ export default function Product(props) {
   const dispatch = useDispatch();
   const { src, hargaOri = '0', namaProduk = 'Produk', hargaDiskon = '0', id } = props;
 
-  const handleAddToChart = () => {
+  const handleAddToCart = () => {
     const data = { id: id, nama: namaProduk, harga: hargaDiskon };
     try {
       dispatch(addItemToCart(data));
@@ -48,7 +48,7 @@ export default function Product(props) {
         Detail
       </Link>
       <div className='p-1 m-1 mt-2 border border-black '>
-        <button onClick={() => handleAddToChart()}>Add To Cart</button>
+        <button onClick={() => handleAddToCart()}>Add To Cart</button>
       </div>
     </article>
   );

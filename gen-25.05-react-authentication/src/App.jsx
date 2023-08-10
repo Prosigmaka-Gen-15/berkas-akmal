@@ -9,6 +9,9 @@ import Form from './component/Form/Form';
 import ListProduct from './component/Form/ListProduct';
 import axios from 'axios';
 import CartPage from './pages/CartPage';
+import LoginPage from './pages/LoginPage';
+import PrivateRoutes from './component/route/privateRoutes';
+import GuestRoutes from './component/route/GuestRoutes';
 
 axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 // axios.defaults.baseURL = 'http://localhost:3000';
@@ -20,9 +23,14 @@ function App() {
         <Route element={<MainLayout />}>
           <Route index element={<HomePage />} />
           <Route path='/product/:id' element={<AboutPage />} />
-          <Route path='/admin' element={<AdminPage />}>
-            <Route index element={<ListProduct />} />
-            <Route path='form/:productId?' element={<Form />} />
+          <Route element={<GuestRoutes />}>
+            <Route path='/login' element={<LoginPage />} />
+          </Route>
+          <Route element={<PrivateRoutes />}>
+            <Route path='/admin' element={<AdminPage />}>
+              <Route index element={<ListProduct />} />
+              <Route path='form/:productId?' element={<Form />} />
+            </Route>
           </Route>
           <Route path='/cart' element={<CartPage />} />
         </Route>

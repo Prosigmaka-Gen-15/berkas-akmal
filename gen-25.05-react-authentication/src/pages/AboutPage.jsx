@@ -75,8 +75,6 @@ export default function AboutPage() {
     value++;
     jumlahIn.current.value = value;
   };
-  const oriPrice = product.originalPrice;
-  const discPrice = product.discountPrice;
 
   return (
     <div>
@@ -116,10 +114,16 @@ export default function AboutPage() {
               </div>
               <div className='flex justify-center product_price md:justify-start'>
                 <p className='inline-block mx-3 my-1 text-xl font-semibold text-gray-600 line-through'>
-                  {oriPrice.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}
+                  {product.originalPrice?.toLocaleString('id-ID', {
+                    style: 'currency',
+                    currency: 'IDR',
+                  })}
                 </p>
                 <p className='inline-block my-1 text-xl font-semibold text-red-500'>
-                  {discPrice.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}
+                  {product.discountPrice?.toLocaleString('id-ID', {
+                    style: 'currency',
+                    currency: 'IDR',
+                  })}
                 </p>
               </div>
               <div className='product_description'>
@@ -185,7 +189,7 @@ export default function AboutPage() {
                       </button>
                     </div>
                     <div className='p-3 my-2 border-2 border-black rounded-full hover:bg-black hover:text-white'>
-                      <input type='submit' className='font-bold' value='Add to Chart' />
+                      <input type='submit' className='font-bold' value='Add to Cart' />
                     </div>
                   </form>
                 </div>

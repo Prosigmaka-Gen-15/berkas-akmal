@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { removeItemFromCart } from '../component/Chart/slices/cartSlice';
+import { removeItemFromCart } from '../component/Redux/slices/cartSlice';
 
 export default function CartPage() {
   const cartItems = useSelector((state) => state.cart);
@@ -10,8 +10,8 @@ export default function CartPage() {
   };
   return (
     <div className='CartPageContainer'>
-      <div className='flex justify-center ChartTitle'>
-        <span className='my-1 text-xl font-semibold TitlePage'>Chart List</span>
+      <div className='flex justify-center CartTitle'>
+        <span className='my-1 text-xl font-semibold TitlePage'>Cart List</span>
       </div>
       <div className='flex justify-center'>
         <table className='border border-black border-solid'>
@@ -34,7 +34,7 @@ export default function CartPage() {
                   <td className='text-center border border-black border-solid'>jumlahTemp</td>
                   <td className='text-center border border-black border-solid'>
                     <button
-                      className='border border-black border-solid p-1 m-1'
+                      className='p-1 m-1 border border-black border-solid'
                       onClick={() => {
                         handleRemoveItem(product.id);
                       }}
