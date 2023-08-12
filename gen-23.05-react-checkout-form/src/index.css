@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  /* Width default */
+  .sideNav {
+    height: 0;
+  }
+
+  /* Width saat open */
+  .sideNav open {
+    height: 626px;
+  }
+  /* Efek transisi */
+  .sideNav {
+    transition: height 500ms ease-in-out;
+  }
+}
+
+@layer components {
+  .activeButton {
+    @apply mx-3 text-white transition bg-black border border-black rounded-3xl;
+  }
+  .borderBlack {
+    @apply px-2 py-1 border border-black border-solid;
+  }
+}
