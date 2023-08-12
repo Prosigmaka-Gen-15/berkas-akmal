@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { addItemToCart } from '../component/Redux/slices/cartSlice';
+// import { useDispatch } from 'react-redux';
+// import { addItemToCart } from '../component/Redux/slices/cartSlice';
 
 //deklarasi tipe data
 Product.propTypes = {
@@ -11,24 +11,31 @@ Product.propTypes = {
   hargaOri: PropTypes.number,
   id: PropTypes.number,
   imgUrl: PropTypes.string,
+  size: PropTypes.number,
+  qty: PropTypes.number,
 };
 
 export default function Product(props) {
-  const dispatch = useDispatch();
-  const { src, hargaOri = '0', namaProduk = 'Produk', hargaDiskon = '0', id } = props;
+  // const dispatch = useDispatch();
+  const { src, hargaOri, namaProduk, hargaDiskon, id } = props;
 
+  {
+    /** 
+     * di hide sementara karena di cartPage belum ada fitur ubah ukuran dan jumlah barang
   const handleAddToCart = () => {
-    const data = { id: id, nama: namaProduk, harga: hargaDiskon };
+    // Format object di cart
+    const data = { id: id, nama: namaProduk, harga: hargaDiskon, size: size, qty: qty };
     try {
       dispatch(addItemToCart(data));
-      // console.log(data);
     } catch (err) {
       alert(err);
       console.log(err);
     } finally {
-      console.log('Add Item Selesai');
+      console.log('Selesai');
     }
   };
+  */
+  }
   return (
     <article className='flex flex-col items-center justify-center max-w-xs p-3 m-4 text-center transform border border-gray-300 border-solid hover:scale-105 hover:shadow hover:border-gray-600'>
       <Link to={'/product/' + id} className='flex flex-col items-center justify-center text-center'>
@@ -43,13 +50,16 @@ export default function Product(props) {
       </Link>
       <Link
         to={'/product/' + id}
-        className='inline-block p-1 mt-3 no-underline border border-black border-solid'
+        className='inline-block p-1 mt-3 no-underline border border-black border-solid hover:bg-slate-900 hover:text-white'
       >
         Detail
       </Link>
-      <div className='p-1 m-1 mt-2 border border-black '>
+      {/** 
+      <div className='p-1 m-1 mt-2 border border-black hover:bg-slate-900 hover:text-white'>
         <button onClick={() => handleAddToCart()}>Add To Cart</button>
+        //Want to ddd popup to input size and qty
       </div>
+      */}
     </article>
   );
 }

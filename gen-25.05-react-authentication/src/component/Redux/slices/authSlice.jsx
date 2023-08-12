@@ -28,6 +28,8 @@ const authSlice = createSlice({
   name: 'auth',
   initialState: getStroedAuthState,
   reducers: {
+    // Setiap kali user login, akan jalan dan di simpan di local storage
+    // Ingin menambahkan fungsi sync cart ketika user login
     setToken(state, action) {
       const token = action.payload;
       state.token = token;
@@ -39,8 +41,10 @@ const authSlice = createSlice({
       state.user.id = id;
       state.user.email = email;
       state.user.username = username;
+      // Ingin menambahkan cart
       localStorage.setItem('user', JSON.stringify({ id, email, username }));
     },
+    // Jalan ketika user logout
     resetAuthData() {
       localStorage.removeItem('token');
       localStorage.removeItem('user');

@@ -1,7 +1,9 @@
 // import React from 'react';
 import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { addItemToCart } from '../component/Redux/slices/cartSlice';
 
 const sizes = ['All', 38, 39, 40, 41, 42, 43];
 const sizeMapping = {
@@ -26,6 +28,8 @@ export default function AboutPage() {
   const { id } = useParams();
   const [product, setProduct] = useState([]);
   const [path, setPath] = useState();
+  const [sizeSelected, setSizeSelected] = useState('All');
+  const dispatch = useDispatch();
   const mainImg = useRef(null);
   const sizeRef = useRef(null);
   const jumlahIn = useRef(null);
@@ -56,11 +60,38 @@ export default function AboutPage() {
       mainImg.current.style.opacity = 1;
     }, 200);
   }
+  // Form Function
   const detailSize = (number) => {
-    // simpan value sesuai dengan input number
+    if (sizeSelected === number) {
+      return;
+    }
+    // Add number to query for cart and apply activeButton
+    setSizeSelected(number);
+    // ubah sizeDesc sesuai dengan input number
     const newSizeDesc = sizeMapping[number];
     sizeRef.current.textContent = newSizeDesc;
   };
+
+  function handleSubmit(event) {
+    // Kenapa jalan ketika di klik button pilih ukuran padahal tidak submit form
+    event.preventDefault();
+    if (sizeSelected === 'All') {
+      alert('Silahkan pilih ukuran sepatu.');
+      return;
+    }
+    const data = {
+      id: product.id,
+      nama: product.namaItem,
+      harga: product.discountPrice,
+      qty: event.target.jumlah.value,
+      size: sizeSelected,
+    };
+    try {
+      dispatch(addItemToCart(data));
+    } catch (error) {
+      console.log(error);
+    }
+  }
   const kurang = () => {
     var value = parseInt(jumlahIn.current.value);
 
@@ -75,7 +106,6 @@ export default function AboutPage() {
     value++;
     jumlahIn.current.value = value;
   };
-
   return (
     <div>
       <main className='flex justify-center p-3'>
@@ -144,55 +174,62 @@ export default function AboutPage() {
               </div>
             </div>
             <div className='flex justify-center m-3 md:max-w-xl md:justify-start order_section'>
-              <div className='order_size'>
-                <h1 className='flex justify-center mx-3 my-3 text-xl font-bold uppercase md:inline-block'>
-                  size
-                </h1>
-                <ul className='flex'>
-                  {sizes.map((size) => (
-                    <li
-                      key={size}
-                      className='mx-3 transition border border-black rounded-3xl hover:bg-black hover:text-white'
+              <div className='flex order_size'>
+                <form onSubmit={handleSubmit}>
+                  <h1 className='flex justify-center mx-3 my-3 text-xl font-bold uppercase md:inline-block'>
+                    size
+                  </h1>
+                  <ul className='flex'>
+                    {sizes.map((size) => (
+                      <li
+                        key={size}
+                        className={`mx-3 transition border border-black rounded-3xl hover:bg-black hover:text-white ${
+                          sizeSelected === size ? ' activeButton' : ''
+                        }`}
+                      >
+                        <button
+                          type='button'
+                          className='m-2 text-lg'
+                          onClick={() => detailSize(size)}
+                        >
+                          {size}
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className='m-3 border border-black rounded-lg order_quantity max-w-[275px]'>
+                    <button
+                      className='p-3 text-white bg-black rounded cursor-pointer'
+                      type='button'
+                      onClick={() => kurang()}
                     >
-                      <button className='m-2 text-lg' onClick={() => detailSize(size)}>
-                        {size}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-                <div className=''>
-                  <form className='flex'>
-                    <div className='m-3 border border-black rounded-lg order_quantity'>
-                      <button
-                        className='p-3 text-white bg-black rounded cursor-pointer'
-                        type='button'
-                        onClick={() => kurang()}
-                      >
-                        -
-                      </button>
-                      <input
-                        ref={jumlahIn}
-                        id='jumlah'
-                        type='number'
-                        min='1'
-                        value='1'
-                        className='max-w-inputWidth spin-none'
-                        readOnly
-                      />
-                      {/* readOnly pada input harus diganti jika ingin berfungsi */}
-                      <button
-                        className='p-3 text-white bg-black rounded cursor-pointer'
-                        type='button'
-                        onClick={() => tambah()}
-                      >
-                        +
-                      </button>
-                    </div>
-                    <div className='p-3 my-2 border-2 border-black rounded-full hover:bg-black hover:text-white'>
-                      <input type='submit' className='font-bold' value='Add to Cart' />
-                    </div>
-                  </form>
-                </div>
+                      -
+                    </button>
+                    <input
+                      ref={jumlahIn}
+                      id='jumlah'
+                      type='number'
+                      min='1'
+                      value='1'
+                      className='max-w-inputWidth spin-none'
+                      readOnly
+                    />
+                    {/* readOnly pada input harus diganti jika ingin berfungsi */}
+                    <button
+                      className='p-3 text-white bg-black rounded cursor-pointer'
+                      type='button'
+                      onClick={() => tambah()}
+                    >
+                      +
+                    </button>
+                  </div>
+                  <button
+                    type='submit'
+                    className='p-3 my-2 font-bold border-2 border-black rounded-full hover:bg-black hover:text-white'
+                  >
+                    Add to Cart
+                  </button>
+                </form>
               </div>
             </div>
           </div>

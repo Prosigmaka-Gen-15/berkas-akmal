@@ -11,13 +11,13 @@ export default function Header() {
         </div>
         <div className='flex flex-col justify-center text-center'>
           <div className='flex flex-col p-3 font-bold text-black no-underline sm:flex-row'>
-            <Link to={'/'} className='p-1 m-1 navContent'>
+            <Link to={'/'} className='p-1 m-1 navContent hover:scale-110'>
               Home
             </Link>
-            <Link to={'/admin'} className='p-1 m-1 navContent'>
+            <Link to={'/admin'} className='p-1 m-1 navContent hover:scale-110'>
               Admin Page
             </Link>
-            <Link to={'/login'} className='p-1 m-1 navContent'>
+            <Link to={'/login'} className='p-1 m-1 navContent hover:scale-110'>
               Login
             </Link>
             <a href='' className='p-1 m-1 sm:hidden navContent'>

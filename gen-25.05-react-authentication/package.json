@@ -9,7 +9,7 @@
     "SF": "prettier --write .",
     "live": "tailwindcss build -i src/index.css -o public/output.css --watch",
     "db": "json-server --watch src/component/db.json",
-    "db-auth": "json-server-auth src/component/db.json --port 3100",
+    "db-auth": "json-server-auth src/component/db.json",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",

@@ -17,12 +17,17 @@ const cartSlice = createSlice({
         alert('Barang sudah ada di keranjang');
       }
     },
+    updateItemInCart(state, action) {
+      return state.map((item) =>
+        item.id === action.payload.id ? { ...item, ...action.payload } : item,
+      );
+    },
     removeItemFromCart(state, action) {
       // hapus berdasarkan id
       const itemId = action.payload;
       const index = state.findIndex((item) => item.id === itemId);
       if (index !== -1) {
-        if (confirm('Apakah anda yakin ingin menghapus barang berikut?')) {
+        if (confirm('Apakah anda yakin?')) {
           state.splice(index, 1); // hapus item
         }
       }
