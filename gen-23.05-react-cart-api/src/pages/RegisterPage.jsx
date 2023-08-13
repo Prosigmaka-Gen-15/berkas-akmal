@@ -1,42 +1,50 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { setToken, setUser } from '../component/Redux/slices/authSlice';
 import { Link, useNavigate } from 'react-router-dom';
 
-export default function LoginPage() {
-  const dispatch = useDispatch();
+export default function RegisterPage() {
   const navigate = useNavigate();
-
   const [formData, setFormData] = useState({
     email: '',
     password: '',
+    username: '',
   });
-
   const setInputValue = (event) =>
     setFormData({
       ...formData,
       [event.target.name]: event.target.value,
     });
-
-  const handleLogin = (event) => {
+  const handleRegister = (event) => {
     event.preventDefault();
     axios
-      .post('/login', formData)
-      .then((res) => {
-        const { accessToken, user } = res.data;
-        dispatch(setToken(accessToken));
-        dispatch(setUser(user));
-        navigate('/admin');
+      .post('register', formData)
+      .then(() => {
+        // const { accessToken } = res.data;
+        navigate('/login');
       })
       .catch((err) => {
         alert(err.response.data);
       });
   };
   return (
-    <main className='LoginFormContainer'>
+    <main className='RegisterFormContainer'>
       <div className='flex justify-center p-1 m-1'>
-        <form className='flex flex-col font-semibold text-center LoginForm' onSubmit={handleLogin}>
+        <form
+          className='flex flex-col font-semibold text-center RegisterForm'
+          onSubmit={handleRegister}
+        >
+          <div className='Username text-start'>
+            Username <br />
+            <input
+              type='text'
+              placeholder='username'
+              className='rounded-md'
+              name='username'
+              value={formData.username}
+              onChange={setInputValue}
+              required
+            />
+          </div>
           <div className='Email text-start'>
             Email <br />
             <input
@@ -62,12 +70,14 @@ export default function LoginPage() {
             />
           </div>
           <div className='pt-3'>
-            <button className='p-1 m-1 border border-black border-solid rounded-md'>Login</button>
+            <button className='p-1 m-1 border border-black border-solid rounded-md'>
+              Register
+            </button>
           </div>
           <div>
-            Do not have account?{' '}
-            <Link to='/register' className='underline'>
-              Register
+            Already have an account?{' '}
+            <Link to='/login' className='underline'>
+              Login
             </Link>
           </div>
         </form>

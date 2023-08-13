@@ -1,7 +1,7 @@
 // import React from 'react';
 import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { addItemToCart } from '../component/Redux/slices/cartSlice';
 
@@ -29,6 +29,7 @@ export default function AboutPage() {
   const [product, setProduct] = useState([]);
   const [path, setPath] = useState();
   const [sizeSelected, setSizeSelected] = useState('All');
+  const isLoggedIn = useSelector((state) => state.auth.token !== '');
   const dispatch = useDispatch();
   const mainImg = useRef(null);
   const sizeRef = useRef(null);
@@ -223,11 +224,13 @@ export default function AboutPage() {
                       +
                     </button>
                   </div>
+
                   <button
                     type='submit'
-                    className='p-3 my-2 font-bold border-2 border-black rounded-full hover:bg-black hover:text-white'
+                    className='p-3 my-2 font-bold border-2 border-black rounded-full hover:bg-black hover:text-white disabled:pointer-events-none'
+                    disabled={!isLoggedIn}
                   >
-                    Add to Cart
+                    {isLoggedIn ? 'Add to Cart' : 'Login Dulu'}
                   </button>
                 </form>
               </div>
