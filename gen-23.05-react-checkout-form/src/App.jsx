@@ -12,6 +12,7 @@ import CartPage from './pages/CartPage';
 import LoginPage from './pages/LoginPage';
 import PrivateRoutes from './component/route/privateRoutes';
 import GuestRoutes from './component/route/GuestRoutes';
+import CheckoutPage from './pages/CheckoutPage';
 
 axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 // axios.defaults.baseURL = 'http://localhost:3000';
@@ -30,9 +31,10 @@ function App() {
             <Route path='/admin' element={<AdminPage />}>
               <Route index element={<ListProduct />} />
               <Route path='form/:productId?' element={<Form />} />
+              <Route path='checkout' element={<CheckoutPage />} />
+              <Route path='cart' element={<CartPage />} />
             </Route>
           </Route>
-          <Route path='/cart' element={<CartPage />} />
         </Route>
         <Route path='*' element={<Navigate to={'/'} />} />
       </Routes>

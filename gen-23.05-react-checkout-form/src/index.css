@@ -22,7 +22,36 @@
   .activeButton {
     @apply mx-3 text-white transition bg-black border border-black rounded-3xl;
   }
-  .borderBlack {
+  .tableHeadCart th,
+  .tableBodyCart td {
     @apply px-2 py-1 border border-black border-solid;
+  }
+  .CheckoutTable div {
+    @apply p-1;
+  }
+  hr {
+    @apply border-black;
+  }
+  .adminMenuList li {
+    @apply flex h-12 cursor-pointer items-center truncate rounded-[5px] px-6 py-4 text-[0.875rem] text-gray-300 outline-none hover:bg-white/10 hover:outline-none;
+  }
+  .userInfo button {
+    @apply p-1 m-1 border border-white border-solid rounded-md hover:bg-white/30;
+  }
+  .tableBodyCheckout td {
+    @apply text-sm p-2;
+  }
+  .form__radio {
+    @apply items-center border flex p-1;
+  }
+  .form__radio label {
+    @apply items-center flex flex-[1] gap-[1em];
+  }
+  .icon {
+    block-size: 1em;
+    display: inline-block;
+    fill: currentColor;
+    inline-size: 1em;
+    vertical-align: middle;
   }
 }

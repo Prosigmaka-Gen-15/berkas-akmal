@@ -26,7 +26,7 @@ export default function Header() {
           </div>
         </div>
         <div className='hidden mr-4 search sm:inline-block'>
-          <Link to={'/cart'}>
+          <Link to={'/admin/cart'}>
             <i className='p-2 chart fa fa-shopping-basket fa-2x to-black' />
           </Link>
         </div>

@@ -39,19 +39,28 @@ export default function FormPage() {
         ref={menuContainer}
       >
         <nav className='p-1'>
+          <div className='gap-1 p-1 m-1 text-white rounded-lg bg-zinc-800 userInfo'>
+            Email: {user.email} <br />
+            User Name: {user.username} <br />
+            <button onClick={handleLogout}>Logout</button>
+            <Link to={'/'}>
+              <button>Home</button>
+            </Link>
+          </div>
+          <hr className='border-slate-50' />
           <ul>
             {/* Menu */}
             <li>
-              <ul>
+              <ul className='adminMenuList'>
                 <a className='ml-3 text-lg font-medium'>
                   <span>Product</span>
                 </a>
-                <li className='flex h-12 cursor-pointer items-center truncate rounded-[5px] px-6 py-4 text-[0.875rem] text-gray-300 outline-none hover:bg-white/10 hover:outline-none '>
+                <li>
                   <Link to={'/admin'}>
                     <span>List Product</span>
                   </Link>
                 </li>
-                <li className='flex h-12 cursor-pointer items-center truncate rounded-[5px] px-6 py-4 text-[0.875rem] text-gray-300 outline-none hover:bg-white/10 hover:outline-none '>
+                <li>
                   <Link to={'/admin/form'}>
                     <span>Add Product</span>
                   </Link>
@@ -65,19 +74,6 @@ export default function FormPage() {
       </div>
       {/* Content */}
       <div className='menuContentContainer'>
-        <div className='gap-1 p-1 m-1'>
-          Email: {user.email} <br />
-          User Name: {user.username} <br />
-          <button
-            onClick={handleLogout}
-            className='p-1 m-1 border border-black border-solid rounded-md'
-          >
-            Logout
-          </button>
-          <Link to={'/'}>
-            <button className='p-1 m-1 border border-black border-solid rounded-md'>Home</button>
-          </Link>
-        </div>
         <Outlet />
       </div>
     </div>
