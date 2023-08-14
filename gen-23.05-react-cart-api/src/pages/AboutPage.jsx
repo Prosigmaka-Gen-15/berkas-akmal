@@ -30,6 +30,9 @@ export default function AboutPage() {
   const [path, setPath] = useState();
   const [sizeSelected, setSizeSelected] = useState('All');
   const isLoggedIn = useSelector((state) => state.auth.token !== '');
+  /* Untuk upload item ke cart user
+  const user = useSelector((state) => state.auth.user);
+  */
   const dispatch = useDispatch();
   const mainImg = useRef(null);
   const sizeRef = useRef(null);

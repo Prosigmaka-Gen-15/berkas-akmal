@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import InputBlock from '../component/InputBlock';
+import { useNavigate } from 'react-router-dom';
 
 export default function CheckoutPage() {
+  const navigate = useNavigate();
   const [totalHarga, setTotalHarga] = useState(0);
   const [paymentMethod, setPaymentMethod] = useState('visa');
   const [shipMethod, setShipMethod] = useState('JNE');
@@ -16,12 +18,19 @@ export default function CheckoutPage() {
   }, [cartItems]);
   const shipFee = (totalHarga / 100) * 5;
   const taxPrice = (totalHarga / 100) * 10;
+  const handleCheckout = (event) => {
+    event.preventDefault();
+    // console.log(event.target);
+    // Lokasi handle data Form
+    alert('Berhasil');
+    navigate('/');
+  };
   return (
     <main>
       <div className='flex justify-center pb-2 CheckoutTitle'>
         <span className='my-1 text-xl font-semibold TitlePage'>Order Summary</span>
       </div>
-      <form>
+      <form onSubmit={handleCheckout}>
         {/* shipping and payment detail*/}
         <div className='flex flex-col justify-center pt-2 text-center CheckoutTable'>
           <div className='text-start'>
@@ -37,7 +46,7 @@ export default function CheckoutPage() {
           </div>
           <hr className='mt-5' />
           <div>
-            <legend className='text-start m-1 p-1 font-semibold'>Shipment Option</legend>
+            <legend className='p-1 m-1 font-semibold text-start'>Shipment Option</legend>
             <div>
               <div className='form__radio'>
                 <label htmlFor='J&T'>
@@ -67,8 +76,8 @@ export default function CheckoutPage() {
           </div>
           <hr className='mt-5' />
           <div>
-            <legend className='text-start m-1 p-1 font-semibold'>Payment Method</legend>
-            <div className='form__radios grid gap-1'>
+            <legend className='p-1 m-1 font-semibold text-start'>Payment Method</legend>
+            <div className='grid gap-1 form__radios'>
               <div className='form__radio'>
                 <label htmlFor='visa'>
                   <img src='/images/Visa.svg' alt='visa' className='max-w-[60px]' />
@@ -136,21 +145,21 @@ export default function CheckoutPage() {
 
           {/* total */}
           <div>
-            <span className='text-sm font-medium flex justify-end m-1'>
+            <span className='flex justify-end m-1 text-sm font-medium'>
               Shipment Fee:&nbsp;
               {shipFee?.toLocaleString('id-ID', {
                 style: 'currency',
                 currency: 'IDR',
               })}
             </span>
-            <span className='uppercase text-sm font-medium flex justify-end m-1'>
+            <span className='flex justify-end m-1 text-sm font-medium uppercase'>
               Tax:&nbsp;
               {taxPrice?.toLocaleString('id-ID', {
                 style: 'currency',
                 currency: 'IDR',
               })}
             </span>
-            <span className='uppercase text-lg font-semibold flex justify-end m-1'>
+            <span className='flex justify-end m-1 text-lg font-semibold uppercase'>
               Total:&nbsp;
               {(totalHarga + taxPrice + shipFee)?.toLocaleString('id-ID', {
                 style: 'currency',
@@ -161,7 +170,7 @@ export default function CheckoutPage() {
         </div>
 
         <div className='flex justify-center m-1'>
-          <button type='submit' className='border p-1 m-1 border-black rounded hover:scale-110 '>
+          <button type='submit' className='p-1 m-1 border border-black rounded hover:scale-110 '>
             Pay Now
           </button>
         </div>
