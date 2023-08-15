@@ -1,30 +1,118 @@
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import InputBlock from '../component/InputBlock';
 import { useNavigate } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
+import axios from 'axios';
+import { removeAllItemFromCart } from '../component/Redux/slices/cartSlice';
 
 export default function CheckoutPage() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [totalHarga, setTotalHarga] = useState(0);
-  const [paymentMethod, setPaymentMethod] = useState('visa');
-  const [shipMethod, setShipMethod] = useState('JNE');
   const cartItems = useSelector((state) => state.cart);
+  const user = useSelector((state) => state.auth.user);
+  const transactionId = uuidv4(); // ID transaksi
+
+  const shipFee = (totalHarga / 100) * 5;
+  const taxPrice = (totalHarga / 100) * 10;
+
+  // Ambil value dari cartItems
+  const details = cartItems.map((item) => {
+    return {
+      productId: item.id,
+      qty: item.qty,
+      subTotal: item.harga * item.qty,
+    };
+  });
+
+  /**
+   * Konfigurasi form untuk di upload, terdapat Masalah:
+   * 1. format upload ke db menjadi 1, tidak terpisah
+   * 2. list products di dalam transactionDetails sebaiknya pakai object atau array atau object array?
+   * 3. Ingin di pisahkan menjadi 2 formData berbeda, tapi masalahnya apakah uuid nanti akan sama? tidak tau
+   * [], {} atau [{}]
+
+   * const productArray = formData.transactionDetails.products;
+   * const mappedArray = productArray.map((product) => {
+   * //Lakukan operasi yang Anda inginkan pada setiap elemen produk di sini
+   * return product;
+   * });
+   */
+  const [formData, setFormData] = useState({
+    userID: user.id,
+    totalItems: cartItems.length,
+    orderDate: new Date().toISOString(), // TODO : get date and time
+    transactionId: transactionId,
+    transactionDetails: {
+      transactionId: transactionId,
+      products: [...details],
+      receiverName: '',
+      receiverAddress: '',
+      shipMethod: '',
+      paymentMethod: '',
+    },
+  });
+
   useEffect(() => {
     const total = Object.values(cartItems).reduce(
       (acc, product) => acc + product.harga * product.qty,
       0,
     );
+    if (cartItems.length === 0) {
+      navigate('/admin/cart');
+    }
     setTotalHarga(total);
-  }, [cartItems]);
-  const shipFee = (totalHarga / 100) * 5;
-  const taxPrice = (totalHarga / 100) * 10;
+  }, [cartItems, navigate]);
+
+  // Input formData
+  const setInputValue = (event) =>
+    setFormData({
+      ...formData,
+      transactionDetails: {
+        ...formData.transactionDetails,
+        [event.target.id]: event.target.value,
+      },
+    });
+  // Input formData.transactionDetails.shipMethod
+  const setShipMethod = (radioID) => {
+    setFormData({
+      ...formData,
+      transactionDetails: {
+        ...formData.transactionDetails,
+        shipMethod: radioID,
+      },
+    });
+  };
+  // Input formData.transactionDetails.paymentMethod
+  const setPaymentMethod = (radioID) => {
+    setFormData({
+      ...formData,
+      transactionDetails: {
+        ...formData.transactionDetails,
+        paymentMethod: radioID,
+      },
+    });
+  };
+
   const handleCheckout = (event) => {
     event.preventDefault();
     // console.log(event.target);
     // Lokasi handle data Form
-    alert('Berhasil');
+    axios
+      .post('transaction', formData)
+      .then(() => {
+        // const { accessToken } = res.data;
+        // navigate('/login');
+        alert('Berhasil');
+      })
+      .catch((err) => {
+        alert(err.response.data);
+      });
+    dispatch(removeAllItemFromCart());
     navigate('/');
   };
+  // console.log(formData);
   return (
     <main>
       <div className='flex justify-center pb-2 CheckoutTitle'>
@@ -38,10 +126,20 @@ export default function CheckoutPage() {
               {/* Rencananya default berdasarkan info alamat di API user */}
               <InputBlock
                 input_title={'Nama Penerima'}
-                id='namaPenerima'
+                id='receiverName'
                 placeholder='Nama Penerima'
+                onChange={setInputValue}
+                value={formData.receiverName}
+                required
               />
-              <InputBlock input_title={'Alamat'} id='alamatPenerima' placeholder='Alamat' />
+              <InputBlock
+                input_title={'Alamat'}
+                id='receiverAddress'
+                placeholder='Alamat'
+                onChange={setInputValue}
+                value={formData.receiverAddress}
+                required
+              />
             </address>
           </div>
           <hr className='mt-5' />
@@ -53,11 +151,12 @@ export default function CheckoutPage() {
                   <img src='/images/JNE.svg' alt='JNE' className='max-w-[90px]' />
                 </label>
                 <input
-                  checked={shipMethod === 'JNE'}
+                  checked={formData.transactionDetails.shipMethod === 'JNE'}
                   onChange={() => setShipMethod('JNE')}
                   id='JNE'
-                  name='ship-method'
+                  name='shipMethod'
                   type='radio'
+                  required
                 />
               </div>
               <div className='form__radio'>
@@ -65,10 +164,10 @@ export default function CheckoutPage() {
                   <img src='/images/J&T.svg' alt='J&T' className='max-w-[90px]' />
                 </label>
                 <input
-                  checked={shipMethod === 'J&T'}
+                  checked={formData.transactionDetails.shipMethod === 'J&T'}
                   onChange={() => setShipMethod('J&T')}
                   id='J&T'
-                  name='ship-method'
+                  name='shipMethod'
                   type='radio'
                 />
               </div>
@@ -83,11 +182,12 @@ export default function CheckoutPage() {
                   <img src='/images/Visa.svg' alt='visa' className='max-w-[60px]' />
                 </label>
                 <input
-                  checked={paymentMethod === 'visa'}
+                  checked={formData.transactionDetails.paymentMethod === 'visa'}
                   onChange={() => setPaymentMethod('visa')}
                   id='visa'
-                  name='payment-method'
+                  name='paymentMethod'
                   type='radio'
+                  required
                 />
               </div>
 
@@ -96,10 +196,10 @@ export default function CheckoutPage() {
                   <img src='/images/PayPal.svg' alt='PayPal' className='max-w-[60px]' />
                 </label>
                 <input
-                  checked={paymentMethod === 'paypal'}
+                  checked={formData.transactionDetails.paymentMethod === 'paypal'}
                   onChange={() => setPaymentMethod('paypal')}
                   id='paypal'
-                  name='payment-method'
+                  name='paymentMethod'
                   type='radio'
                 />
               </div>

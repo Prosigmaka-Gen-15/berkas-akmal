@@ -96,9 +96,11 @@ export default function CartPage() {
           </table>
           <Link
             to={'/admin/checkout'}
-            className='p-1 mt-3 text-center rounded border border-black hover:bg-black hover:text-white'
+            className='p-1 mt-3 text-center border border-black rounded hover:bg-black hover:text-white'
           >
-            <button type='button'>Checkout</button>
+            <button type='button' disabled={cartItems.length === 0}>
+              Checkout
+            </button>
           </Link>
         </div>
       </div>

@@ -32,11 +32,14 @@ const cartSlice = createSlice({
         }
       }
     },
+    removeAllItemFromCart() {
+      return [];
+    },
     // incrementQuantity(state, action){
 
     // }
   },
 });
 
-export const { addItemToCart, removeItemFromCart } = cartSlice.actions;
+export const { addItemToCart, removeItemFromCart, removeAllItemFromCart } = cartSlice.actions;
 export default cartSlice.reducer;

@@ -119,6 +119,16 @@
       "itemColor": "Hitam",
       "itemSize": "40 sampai 43",
       "imagePath": "/images/12.webp"
+    },
+    {
+      "id": 13,
+      "namaItem": "ADIDAS Fluidstreet",
+      "originalPrice": 899000,
+      "discountPrice": 799000,
+      "itemDesc": "Sepatu olahraga performa tinggi dari Adidas dengan bantalan yang empuk.",
+      "itemColor": "Hitam, Putih, Biru",
+      "itemSize": "40 sampai 44",
+      "imagePath": "/images/2.webp"
     }
   ],
   "users": [
@@ -129,5 +139,7 @@
       "id": 1
     }
   ],
-  "carts": []
+  "carts": [],
+  "transaction": [],
+  "transactionHistories": []
 }
