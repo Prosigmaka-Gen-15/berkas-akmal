@@ -1,13 +1,16 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function RegisterPage() {
   const navigate = useNavigate();
+  const transactionId = uuidv4(); // ID transaksi
   const [formData, setFormData] = useState({
     email: '',
     password: '',
     username: '',
+    uuid: transactionId,
   });
   const setInputValue = (event) =>
     setFormData({

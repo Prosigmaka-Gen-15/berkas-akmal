@@ -42,7 +42,7 @@ function HomePage() {
               products.map((product) => (
                 <Product
                   key={product.id}
-                  id={product.id}
+                  productId={product.productId}
                   namaProduk={product.namaItem}
                   hargaOri={product.originalPrice}
                   hargaDiskon={product.discountPrice}

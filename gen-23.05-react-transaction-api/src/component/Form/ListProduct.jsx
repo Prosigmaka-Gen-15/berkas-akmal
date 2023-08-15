@@ -72,8 +72,8 @@ function ListProduct() {
             </tr>
           ) : (
             product.map((product) => (
-              <tr key={product.id} className='text-center border border-black border-solid '>
-                <td>{product.id}</td>
+              <tr key={product.productId} className='text-center border border-black border-solid '>
+                <td>{product.productId}</td>
                 <td>{product.namaItem}</td>
                 <td>
                   {product.originalPrice.toLocaleString('id-ID', {

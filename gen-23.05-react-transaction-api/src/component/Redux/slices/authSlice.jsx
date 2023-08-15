@@ -7,6 +7,7 @@ const initialState = {
     id: '',
     email: '',
     username: '',
+    uuid: '',
   },
 };
 
@@ -37,12 +38,14 @@ const authSlice = createSlice({
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
     },
     setUser(state, action) {
-      const { id, email, username } = action.payload;
+      const { id, email, username, uuid } = action.payload;
       state.user.id = id;
       state.user.email = email;
       state.user.username = username;
+      state.user.uuid = uuid;
+
       // Ingin menambahkan cart
-      localStorage.setItem('user', JSON.stringify({ id, email, username }));
+      localStorage.setItem('user', JSON.stringify({ id, email, username, uuid }));
     },
     // Jalan ketika user logout
     resetAuthData() {

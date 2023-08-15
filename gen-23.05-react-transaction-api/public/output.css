@@ -994,14 +994,6 @@ hr {
   width: 24rem;
 }
 
-.w-5 {
-  width: 1.25rem;
-}
-
-.w-80 {
-  width: 20rem;
-}
-
 .max-w-\[200px\] {
   max-width: 200px;
 }
@@ -1158,14 +1150,6 @@ hr {
 .border-slate-50 {
   --tw-border-opacity: 1;
   border-color: rgb(248 250 252 / var(--tw-border-opacity));
-}
-
-.border-transparent {
-  border-color: transparent;
-}
-
-.border-e-transparent {
-  border-inline-end-color: transparent;
 }
 
 .bg-black {

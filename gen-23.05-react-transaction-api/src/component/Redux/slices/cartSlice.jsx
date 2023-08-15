@@ -8,24 +8,24 @@ const cartSlice = createSlice({
   initialState: initialStateValue,
   reducers: {
     addItemToCart(state, action) {
-      // state.push(action.payload);
-      const isProductExist = state.find((product) => action.payload.id == product.id);
+      const isProductExist = state.find((product) => action.payload.productId == product.productId);
       if (!isProductExist) {
-        alert('Barang berhasil di tambahkan');
         return [...state, action.payload];
       } else {
         alert('Barang sudah ada di keranjang');
       }
     },
     updateItemInCart(state, action) {
+      // Belum Dipakai
       return state.map((item) =>
-        item.id === action.payload.id ? { ...item, ...action.payload } : item,
+        // asd
+        item.productId === action.payload.productId ? { ...item, ...action.payload } : item,
       );
     },
     removeItemFromCart(state, action) {
       // hapus berdasarkan id
       const itemId = action.payload;
-      const index = state.findIndex((item) => item.id === itemId);
+      const index = state.findIndex((item) => item.productId === itemId);
       if (index !== -1) {
         if (confirm('Apakah anda yakin?')) {
           state.splice(index, 1); // hapus item

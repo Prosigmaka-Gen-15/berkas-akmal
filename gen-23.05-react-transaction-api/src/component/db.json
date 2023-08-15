@@ -2,6 +2,7 @@
   "productsDetail": [
     {
       "id": 1,
+      "productId": 1,
       "namaItem": "GATA 1012",
       "originalPrice": 760000,
       "discountPrice": 550000,
@@ -12,6 +13,7 @@
     },
     {
       "id": 2,
+      "productId": 2,
       "namaItem": "ADIDAS Fluidstreet",
       "originalPrice": 899000,
       "discountPrice": 799000,
@@ -22,6 +24,7 @@
     },
     {
       "id": 3,
+      "productId": 3,
       "namaItem": "EIGER Trailseek",
       "originalPrice": 1500000,
       "discountPrice": 1350000,
@@ -32,6 +35,7 @@
     },
     {
       "id": 4,
+      "productId": 4,
       "namaItem": "NIKE Flex",
       "originalPrice": 699000,
       "discountPrice": 549000,
@@ -42,6 +46,7 @@
     },
     {
       "id": 5,
+      "productId": 5,
       "namaItem": "REEBOK Trilux",
       "originalPrice": 799000,
       "discountPrice": 629000,
@@ -52,6 +57,7 @@
     },
     {
       "id": 6,
+      "productId": 6,
       "namaItem": "SKECHERS Hyper",
       "originalPrice": 899000,
       "discountPrice": 629000,
@@ -62,6 +68,7 @@
     },
     {
       "id": 7,
+      "productId": 7,
       "namaItem": "NEW BALANCE 420",
       "originalPrice": 899000,
       "discountPrice": 799000,
@@ -72,6 +79,7 @@
     },
     {
       "id": 8,
+      "productId": 8,
       "namaItem": "PUMA Future Rider",
       "originalPrice": 1200000,
       "discountPrice": 899000,
@@ -82,6 +90,7 @@
     },
     {
       "id": 9,
+      "productId": 9,
       "namaItem": "VANS Old Skool",
       "originalPrice": 799000,
       "discountPrice": 629000,
@@ -92,6 +101,7 @@
     },
     {
       "id": 10,
+      "productId": 10,
       "namaItem": "CONVERSE Chuck Taylor",
       "originalPrice": 649000,
       "discountPrice": 549000,
@@ -102,6 +112,7 @@
     },
     {
       "id": 11,
+      "productId": 11,
       "namaItem": "LOPEZ Loafers",
       "originalPrice": 600000,
       "discountPrice": 450000,
@@ -112,6 +123,7 @@
     },
     {
       "id": 12,
+      "productId": 12,
       "namaItem": "ROCKPORT Chranson",
       "originalPrice": 899000,
       "discountPrice": 799000,
@@ -122,6 +134,7 @@
     },
     {
       "id": 13,
+      "productId": 13,
       "namaItem": "ADIDAS Fluidstreet",
       "originalPrice": 899000,
       "discountPrice": 799000,
@@ -129,17 +142,29 @@
       "itemColor": "Hitam, Putih, Biru",
       "itemSize": "40 sampai 44",
       "imagePath": "/images/2.webp"
+    },
+    {
+      "imagePath": "[object FileList]",
+      "itemSize": "adsasasdawd",
+      "itemColor": "ddsdaasd",
+      "itemDesc": "asd",
+      "discountPrice": 321,
+      "originalPrice": 123,
+      "namaItem": "asd",
+      "id": 14
     }
   ],
   "users": [
     {
       "email": "asd@gmail.com",
-      "password": "$2a$10$mXxQ6Mi4bY3xDWrgIjQUoOvsgUlIDBtfKOyvj7mlkYsIbfvBXU/n2",
+      "password": "$2a$10$rnOxvT5mEmlvCAKqU5hSSOOfzjkx8NG1/KaAgK51Bt1LiuRa.Kske",
       "username": "Akmal",
+      "uuid": "5671f36c-0cd7-46d9-8951-22b384129a76",
       "id": 1
     }
   ],
   "carts": [],
-  "transaction": [],
+  "transactions": [],
+  "transactionDetails": [],
   "transactionHistories": []
 }

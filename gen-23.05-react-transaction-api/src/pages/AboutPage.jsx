@@ -16,23 +16,21 @@ const sizeMapping = {
   43: '43 = 28 cm',
 };
 const img = [
-  { id: 1, src: '/images/1.webp', alt: 'Product 1' },
-  { id: 2, src: '/images/2.webp', alt: 'Product 2' },
-  { id: 3, src: '/images/3.webp', alt: 'Product 3' },
-  { id: 4, src: '/images/4.webp', alt: 'Product 4' },
-  { id: 5, src: '/images/5.webp', alt: 'Product 5' },
-  { id: 6, src: '/images/6.webp', alt: 'Product 6' },
+  { productId: 1, src: '/images/1.webp', alt: 'Product 1' },
+  { productId: 2, src: '/images/2.webp', alt: 'Product 2' },
+  { productId: 3, src: '/images/3.webp', alt: 'Product 3' },
+  { productId: 4, src: '/images/4.webp', alt: 'Product 4' },
+  { productId: 5, src: '/images/5.webp', alt: 'Product 5' },
+  { productId: 6, src: '/images/6.webp', alt: 'Product 6' },
 ];
 
 export default function AboutPage() {
-  const { id } = useParams();
+  const { productId } = useParams();
   const [product, setProduct] = useState([]);
   const [path, setPath] = useState();
   const [sizeSelected, setSizeSelected] = useState('All');
   const isLoggedIn = useSelector((state) => state.auth.token !== '');
-  /* Untuk upload item ke cart user
   const user = useSelector((state) => state.auth.user);
-  */
   const dispatch = useDispatch();
   const mainImg = useRef(null);
   const sizeRef = useRef(null);
@@ -40,7 +38,7 @@ export default function AboutPage() {
 
   const getProduct = async () => {
     try {
-      let response = await axios.get('/productsDetail/' + id);
+      let response = await axios.get('/productsDetail/' + productId);
       setProduct(response.data);
       setPath(response.data.imagePath);
     } catch (e) {
@@ -84,13 +82,26 @@ export default function AboutPage() {
       return;
     }
     const data = {
-      id: product.id,
+      productId: product.id,
+      userUUID: user.uuid,
       nama: product.namaItem,
       harga: product.discountPrice,
       qty: event.target.jumlah.value,
       size: sizeSelected,
     };
     try {
+      // Upload barang ke db
+      axios
+        .post('carts', data)
+        .then(() => {
+          alert('Barang berhasil di tambahkan');
+        })
+        .catch((err) => {
+          alert(err.response.data);
+        });
+      // Kalau ambil dari db, berarti tidak perlu pakai dispatch (redux)
+      // if axios.get('carts').uuid => data = axios.get
+      // else data
       dispatch(addItemToCart(data));
     } catch (error) {
       console.log(error);
@@ -128,7 +139,7 @@ export default function AboutPage() {
               <div className='flex max-w-md m-1 mt-1 overflow-auto'>
                 {img.map((product) => (
                   <img
-                    key={product.id}
+                    key={product.productId}
                     src={product.src}
                     className='w-24 mr-2 transition cursor-pointer flex-flexGellery hover:opacity-50 miniImg'
                     onClick={() => ChangePath(product.src)}

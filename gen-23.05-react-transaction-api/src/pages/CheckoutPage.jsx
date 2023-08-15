@@ -5,14 +5,13 @@ import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
 import { removeAllItemFromCart } from '../component/Redux/slices/cartSlice';
-
+const transactionId = uuidv4(); // ID transaksi
 export default function CheckoutPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [totalHarga, setTotalHarga] = useState(0);
   const cartItems = useSelector((state) => state.cart);
   const user = useSelector((state) => state.auth.user);
-  const transactionId = uuidv4(); // ID transaksi
 
   const shipFee = (totalHarga / 100) * 5;
   const taxPrice = (totalHarga / 100) * 10;
@@ -20,7 +19,7 @@ export default function CheckoutPage() {
   // Ambil value dari cartItems
   const details = cartItems.map((item) => {
     return {
-      productId: item.id,
+      productId: item.productId,
       qty: item.qty,
       subTotal: item.harga * item.qty,
     };
@@ -31,6 +30,7 @@ export default function CheckoutPage() {
    * 1. format upload ke db menjadi 1, tidak terpisah
    * 2. list products di dalam transactionDetails sebaiknya pakai object atau array atau object array?
    * 3. Ingin di pisahkan menjadi 2 formData berbeda, tapi masalahnya apakah uuid nanti akan sama? tidak tau
+   * 4. Ada masalah tentang id pada product, ingin di ubah dari number 1,2,dll ke uuid agar unik
    * [], {} atau [{}]
 
    * const productArray = formData.transactionDetails.products;
@@ -40,19 +40,19 @@ export default function CheckoutPage() {
    * });
    */
   const [formData, setFormData] = useState({
-    userID: user.id,
-    totalItems: cartItems.length,
-    orderDate: new Date().toISOString(), // TODO : get date and time
+    userUUID: user.uuid,
     transactionId: transactionId,
-    transactionDetails: {
-      transactionId: transactionId,
-      products: [...details],
-      receiverName: '',
-      receiverAddress: '',
-      shipMethod: '',
-      paymentMethod: '',
-    },
+    orderDate: new Date().toISOString(), // TODO : get date and time
+    totalItems: cartItems.length,
+    receiverName: '',
+    receiverAddress: '',
+    shipMethod: '',
+    paymentMethod: '',
   });
+  const transactionDetails = {
+    transactionId: transactionId,
+    products: [...details],
+  };
 
   useEffect(() => {
     const total = Object.values(cartItems).reduce(
@@ -69,29 +69,20 @@ export default function CheckoutPage() {
   const setInputValue = (event) =>
     setFormData({
       ...formData,
-      transactionDetails: {
-        ...formData.transactionDetails,
-        [event.target.id]: event.target.value,
-      },
+      [event.target.id]: event.target.value,
     });
   // Input formData.transactionDetails.shipMethod
   const setShipMethod = (radioID) => {
     setFormData({
       ...formData,
-      transactionDetails: {
-        ...formData.transactionDetails,
-        shipMethod: radioID,
-      },
+      shipMethod: radioID,
     });
   };
   // Input formData.transactionDetails.paymentMethod
   const setPaymentMethod = (radioID) => {
     setFormData({
       ...formData,
-      transactionDetails: {
-        ...formData.transactionDetails,
-        paymentMethod: radioID,
-      },
+      paymentMethod: radioID,
     });
   };
 
@@ -100,7 +91,16 @@ export default function CheckoutPage() {
     // console.log(event.target);
     // Lokasi handle data Form
     axios
-      .post('transaction', formData)
+      .post('transactions', formData)
+      .then(() => {
+        // const { accessToken } = res.data;
+        // navigate('/login');
+      })
+      .catch((err) => {
+        alert(err.response.data);
+      });
+    axios
+      .post('transactionDetails', transactionDetails)
       .then(() => {
         // const { accessToken } = res.data;
         // navigate('/login');
@@ -151,7 +151,7 @@ export default function CheckoutPage() {
                   <img src='/images/JNE.svg' alt='JNE' className='max-w-[90px]' />
                 </label>
                 <input
-                  checked={formData.transactionDetails.shipMethod === 'JNE'}
+                  checked={formData.shipMethod === 'JNE'}
                   onChange={() => setShipMethod('JNE')}
                   id='JNE'
                   name='shipMethod'
@@ -164,7 +164,7 @@ export default function CheckoutPage() {
                   <img src='/images/J&T.svg' alt='J&T' className='max-w-[90px]' />
                 </label>
                 <input
-                  checked={formData.transactionDetails.shipMethod === 'J&T'}
+                  checked={formData.shipMethod === 'J&T'}
                   onChange={() => setShipMethod('J&T')}
                   id='J&T'
                   name='shipMethod'
@@ -182,7 +182,7 @@ export default function CheckoutPage() {
                   <img src='/images/Visa.svg' alt='visa' className='max-w-[60px]' />
                 </label>
                 <input
-                  checked={formData.transactionDetails.paymentMethod === 'visa'}
+                  checked={formData.paymentMethod === 'visa'}
                   onChange={() => setPaymentMethod('visa')}
                   id='visa'
                   name='paymentMethod'
@@ -196,7 +196,7 @@ export default function CheckoutPage() {
                   <img src='/images/PayPal.svg' alt='PayPal' className='max-w-[60px]' />
                 </label>
                 <input
-                  checked={formData.transactionDetails.paymentMethod === 'paypal'}
+                  checked={formData.paymentMethod === 'paypal'}
                   onChange={() => setPaymentMethod('paypal')}
                   id='paypal'
                   name='paymentMethod'

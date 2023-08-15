@@ -24,7 +24,7 @@ function App() {
       <Routes>
         <Route element={<MainLayout />}>
           <Route index element={<HomePage />} />
-          <Route path='/product/:id' element={<AboutPage />} />
+          <Route path='/product/:productId' element={<AboutPage />} />
           <Route element={<GuestRoutes />}>
             <Route path='/login' element={<LoginPage />} />
             <Route path='/register' element={<RegisterPage />} />

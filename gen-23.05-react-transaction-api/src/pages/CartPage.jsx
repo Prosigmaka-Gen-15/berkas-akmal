@@ -4,17 +4,15 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 export default function CartPage() {
-  // useState untuk ukuran dan jumlah barang
-  // const [sizeInCart, setSizeInCart] = useState();
-  // const [qtyInCart, setQtyInCart] = useState();
-
   // mengambil data state setelah addItemToCart
+  const cartItems = useSelector((state) => state.cart); //Data dari redux bukan dari db
   const [totalHarga, setTotalHarga] = useState(0);
-  const cartItems = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+
   const handleRemoveItem = (itemId) => {
     dispatch(removeItemFromCart(itemId));
   };
+
   useEffect(() => {
     const total = Object.values(cartItems).reduce(
       (acc, product) => acc + product.harga * product.qty,
@@ -22,6 +20,7 @@ export default function CartPage() {
     );
     setTotalHarga(total);
   }, [cartItems]);
+
   return (
     <main className='CartPageContainer'>
       <div className='flex justify-center CartTitle'>
@@ -65,7 +64,7 @@ export default function CartPage() {
                     <button
                       className='p-1 m-1 text-white bg-red-700 rounded hover:bg-red-400 '
                       onClick={() => {
-                        handleRemoveItem(product.id);
+                        handleRemoveItem(product.productId);
                       }}
                     >
                       Hapus
