@@ -1,9 +1,9 @@
 // import React from 'react';
 import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { addItemToCart } from '../component/Redux/slices/cartSlice';
+// import { addItemToCart } from '../component/Redux/slices/cartSlice';
 
 const sizes = ['All', 38, 39, 40, 41, 42, 43];
 const sizeMapping = {
@@ -24,21 +24,24 @@ const img = [
   { productId: 6, src: '/images/6.webp', alt: 'Product 6' },
 ];
 
+// fetch data carts dan detailProducts dari db dan di simpan ke variable baru
 export default function AboutPage() {
+  // productId masih error ketika tambah barang baru
   const { productId } = useParams();
   const [product, setProduct] = useState([]);
   const [path, setPath] = useState();
   const [sizeSelected, setSizeSelected] = useState('All');
-  const isLoggedIn = useSelector((state) => state.auth.token !== '');
   const user = useSelector((state) => state.auth.user);
-  const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => state.auth.token !== '');
+  // const user = useSelector((state) => state.auth.user);
+  // const dispatch = useDispatch();
   const mainImg = useRef(null);
   const sizeRef = useRef(null);
   const jumlahIn = useRef(null);
 
   const getProduct = async () => {
     try {
-      let response = await axios.get('/productsDetail/' + productId);
+      let response = await axios.get('/productDetails/' + productId);
       setProduct(response.data);
       setPath(response.data.imagePath);
     } catch (e) {
@@ -73,7 +76,6 @@ export default function AboutPage() {
     const newSizeDesc = sizeMapping[number];
     sizeRef.current.textContent = newSizeDesc;
   };
-
   function handleSubmit(event) {
     // Kenapa jalan ketika di klik button pilih ukuran padahal tidak submit form
     event.preventDefault();
@@ -81,16 +83,17 @@ export default function AboutPage() {
       alert('Silahkan pilih ukuran sepatu.');
       return;
     }
+
     const data = {
-      productId: product.id,
-      userUUID: user.uuid,
-      nama: product.namaItem,
-      harga: product.discountPrice,
-      qty: event.target.jumlah.value,
-      size: sizeSelected,
+      id: '', //isi otomatis di db
+      userId: user.id,
+      productDetailId: product.id, //detail product di ambil dari productDetails, tidak perlu di masukkan ke carts
+      size: sizeSelected, // Input user
+      qty: event.target.jumlah.value, // Input user
+      subTotal: event.target.jumlah.value * product.discountPrice, // Input user
     };
     try {
-      // Upload barang ke db
+      // Upload barang ke db carts
       axios
         .post('carts', data)
         .then(() => {
@@ -99,10 +102,9 @@ export default function AboutPage() {
         .catch((err) => {
           alert(err.response.data);
         });
-      // Kalau ambil dari db, berarti tidak perlu pakai dispatch (redux)
-      // if axios.get('carts').uuid => data = axios.get
-      // else data
-      dispatch(addItemToCart(data));
+      // dispatch(addItemToCart(data));
+      // tidak pakai dispatch karena di cartPage nanti akan dilakukan /productDetails?_embed=carts untuk ambil detail product langsung dari db
+      // hapus data dari carts pakai axios.delete
     } catch (error) {
       console.log(error);
     }
@@ -121,6 +123,7 @@ export default function AboutPage() {
     value++;
     jumlahIn.current.value = value;
   };
+
   return (
     <div>
       <main className='flex justify-center p-3'>
