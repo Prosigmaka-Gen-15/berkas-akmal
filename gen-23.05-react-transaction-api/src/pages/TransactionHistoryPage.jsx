@@ -40,8 +40,8 @@ export default function TransactionHistoryPage() {
 
   return (
     <main>
-      <div className='TransactionHistoryContainer w-screen flex flex-col items-center'>
-        <div className='flex justify-center text-center p-1 m-1'>
+      <div className='flex flex-col items-center w-screen TransactionHistoryContainer'>
+        <div className='flex justify-center p-1 m-1 text-center'>
           <span className='p-1 m-1 text-xl Title'>Transaction History</span>
         </div>
         {/* Table */}
@@ -61,8 +61,14 @@ export default function TransactionHistoryPage() {
                 <td>{item.username}</td>
                 <td>{item.orderDate}</td>
                 <td>{item.orderTime}</td>
-                <td>{item.totalPrice}</td>
                 <td>
+                  {item.totalPrice?.toLocaleString('id-ID', {
+                    style: 'currency',
+                    currency: 'IDR',
+                  })}
+                </td>
+                <td>
+                  {/* Param: userId dan transactionId */}
                   <Link to={'/admin/transactions/detail/' + item.userId + '/' + item.id}>
                     <button className='p-1 text-white bg-blue-500 border border-black border-solid rounded hover:bg-blue-400'>
                       Detail

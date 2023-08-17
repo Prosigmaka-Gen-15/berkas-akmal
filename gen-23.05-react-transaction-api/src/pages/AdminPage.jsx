@@ -53,6 +53,24 @@ export default function FormPage() {
             <li>
               <ul className='adminMenuList'>
                 <a className='ml-3 text-lg font-medium'>
+                  <span>Shop</span>
+                </a>
+                <li>
+                  <Link to={'/admin/transactions'}>
+                    <span>Transaction History</span>
+                  </Link>
+                </li>
+                {/* End sub-menu */}
+              </ul>
+            </li>
+            {/* End Menu */}
+          </ul>
+          <hr className='border-slate-50' />
+          <ul>
+            {/* Menu */}
+            <li>
+              <ul className='adminMenuList'>
+                <a className='ml-3 text-lg font-medium'>
                   <span>Product</span>
                 </a>
                 <li>

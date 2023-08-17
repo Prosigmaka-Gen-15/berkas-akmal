@@ -14,6 +14,8 @@ import PrivateRoutes from './component/route/privateRoutes';
 import GuestRoutes from './component/route/GuestRoutes';
 import CheckoutPage from './pages/CheckoutPage';
 import RegisterPage from './pages/RegisterPage';
+import TransactionHistoryPage from './pages/TransactionHistoryPage';
+import TransactionHistoryDetailPage from './pages/TransactionHistoryDetailPage';
 
 axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 // axios.defaults.baseURL = 'http://localhost:3000';
@@ -33,8 +35,15 @@ function App() {
             <Route path='/admin' element={<AdminPage />}>
               <Route index element={<ListProduct />} />
               <Route path='form/:productId?' element={<Form />} />
-              <Route path='checkout' element={<CheckoutPage />} />
+              <Route path='checkout/:isItemExist?' element={<CheckoutPage />} />
               <Route path='cart' element={<CartPage />} />
+              <Route path='transactions'>
+                <Route index element={<TransactionHistoryPage />} />
+                <Route
+                  path='detail/:userId?/:transactionId?'
+                  element={<TransactionHistoryDetailPage />}
+                />
+              </Route>
             </Route>
           </Route>
         </Route>

@@ -5,9 +5,9 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 export default function TransactionHistoryDetailPage() {
-  const { userId, transactionId } = useParams();
+  const { transactionId } = useParams();
   const [details, setDetails] = useState([]);
-  const [userDetail, setUserDetail] = useState([]);
+  const [productArr, setProductArr] = useState([]);
 
   const getTransactionDetails = () => {
     try {
@@ -22,31 +22,22 @@ export default function TransactionHistoryDetailPage() {
       console.log(err);
     }
   };
-  const getUserDetails = () => {
-    try {
-      axios
-        .get('/users/' + userId)
-        .then((res) => {
-          setUserDetail(res.data);
-        })
-        .catch((err) => console.error(err.message));
-    } catch (err) {
-      alert(err);
-      console.log(err);
-    }
-  };
 
+  const getProductList = async () => {
+    const ProductList = await axios.get('transactionDetails?transactionId=' + transactionId);
+    // console.log(ProductList.data);
+    setProductArr(ProductList.data);
+  };
   useEffect(() => {
     getTransactionDetails();
-    getUserDetails();
+    getProductList();
   }, []);
-  // const productArray = details.transactionDetails;
+
   return (
     <main>
-      <div className='TransactionHistoryContainer w-screen flex flex-col items-center'>
-        <div className='flex flex-col justify-center text-center p-1 m-1'>
+      <div className='flex flex-col items-center w-screen TransactionHistoryContainer'>
+        <div className='flex flex-col justify-center p-1 m-1 text-center'>
           <span className='p-1 m-1 text-xl Title'>Transaction History Detail</span>
-          <span>{userDetail.username}</span>
         </div>
         {/* Table */}
         <table className='justify-center m-1 w-[90%] text-center'>
@@ -67,7 +58,12 @@ export default function TransactionHistoryDetailPage() {
               <td>{details.receiverAddress}</td>
               <td>{details.shipMethod}</td>
               <td>{details.paymentMethod}</td>
-              <td>{details.totalPrice}</td>
+              <td>
+                {details.totalPrice?.toLocaleString('id-ID', {
+                  style: 'currency',
+                  currency: 'IDR',
+                })}
+              </td>
             </tr>
           </tbody>
         </table>
@@ -81,18 +77,34 @@ export default function TransactionHistoryDetailPage() {
               {/* <th>Size</th> */}
               <th>Price</th>
               <th>QTY</th>
+              <th>Size</th>
               <th>SubTotal</th>
-              <th>Payment Method</th>
-              <th>Total</th>
             </tr>
-            {/* {productArray.map((product) => (
+            {productArr.map((product) => (
               <tr key={product.id}>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>Belum</td>
+                <td>Belum</td>
+                <td>{product.qty}</td>
+                <td>{product.size}</td>
+                <td>
+                  {product.subTotal?.toLocaleString('id-ID', {
+                    style: 'currency',
+                    currency: 'IDR',
+                  })}
+                </td>
               </tr>
-            ))} */}
+            ))}
+            <tr>
+              <td colSpan='4' className='text-lg font-bold uppercase'>
+                Total
+              </td>
+              <td>
+                {details.totalPrice?.toLocaleString('id-ID', {
+                  style: 'currency',
+                  currency: 'IDR',
+                })}
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>

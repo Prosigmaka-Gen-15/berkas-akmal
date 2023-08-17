@@ -1,9 +1,3 @@
-/**
- * Product List Table
- * Create Button
- * Edit Button
- * Delete Button
- */
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -16,7 +10,7 @@ function ListProduct() {
     setLoading(true);
     try {
       axios
-        .get('productsDetail')
+        .get('productDetails')
         .then((res) => setProduct(res.data))
         .catch((err) => {
           alert(err);
@@ -32,10 +26,10 @@ function ListProduct() {
   useEffect(() => {
     getProducts();
   }, []);
-  const deleteProduct = (productId) => {
+  const deleteProduct = (productDetailId) => {
     if (confirm('Anda yakin?')) {
       axios
-        .delete('/productsDetail/' + productId)
+        .delete('/productDetails/' + productDetailId)
         .then(() => getProducts())
         .catch((err) => alert(err));
     }
@@ -55,7 +49,7 @@ function ListProduct() {
       </div>
       <table className='flex justify-center m-1'>
         <tbody className='ListProduct'>
-          <tr className='border border-black border-solid'>
+          <tr>
             <th>id</th>
             <th>namaItem</th>
             <th>originalPrice</th>
@@ -72,8 +66,8 @@ function ListProduct() {
             </tr>
           ) : (
             product.map((product) => (
-              <tr key={product.productId} className='text-center border border-black border-solid '>
-                <td>{product.productId}</td>
+              <tr key={product.id} className='text-center'>
+                <td>{product.id}</td>
                 <td>{product.namaItem}</td>
                 <td>
                   {product.originalPrice.toLocaleString('id-ID', {

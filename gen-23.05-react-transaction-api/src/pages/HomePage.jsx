@@ -11,9 +11,11 @@ function HomePage() {
     setLoading(true);
     try {
       axios
-        .get('/productsDetail')
-        // .get('/660/productsDetail')
-        .then((res) => setProducts(res.data))
+        .get('/productDetails')
+        // .get('/660/productDetails')
+        .then((res) => {
+          setProducts(res.data);
+        })
         .catch((err) => {
           alert('User harus login');
           console.log(err.data);
@@ -42,7 +44,8 @@ function HomePage() {
               products.map((product) => (
                 <Product
                   key={product.id}
-                  productId={product.productId}
+                  // productId masih error ketika tambah barang baru
+                  productId={product.id} //undefined untuk product baru
                   namaProduk={product.namaItem}
                   hargaOri={product.originalPrice}
                   hargaDiskon={product.discountPrice}

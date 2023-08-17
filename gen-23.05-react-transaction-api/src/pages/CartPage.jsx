@@ -1,35 +1,26 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { removeItemFromCart } from '../component/Redux/slices/cartSlice';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 export default function CartPage() {
-  // mengambil data state setelah addItemToCart
-  // Data dari redux bukan dari db
-  // data di db (carts) sudah terkait dengan user (userId) jadi bisa di panggil menggunakan
-  // axios get (/users/{user.id}?_embed=carts)
   const cartItems = useSelector((state) => state.cart);
-  const [totalHarga, setTotalHarga] = useState(0);
   const [allProducts, setAllProducts] = useState([]);
   const user = useSelector((state) => state.auth.user);
-  const dispatch = useDispatch();
 
   const handleRemoveItem = (itemId) => {
-    dispatch(removeItemFromCart(itemId));
+    if (confirm('Apa anda yakin?')) {
+      axios.delete('carts/' + itemId);
+      window.location.reload();
+    }
   };
 
   useEffect(() => {
-    const total = Object.values(cartItems).reduce(
-      (acc, product) => acc + product.harga * product.qty,
-      0,
-    );
-    setTotalHarga(total);
     getProduct();
   }, [cartItems]);
 
   const getProduct = async () => {
-    // Ambil data dari db carts
+    // ambil data dari db carts
     try {
       let response = await axios.get('/productDetails?_embed=carts');
       setAllProducts(response.data);
@@ -37,7 +28,10 @@ export default function CartPage() {
       console.log(e.message);
     }
   };
+
   let number = 0;
+  let totalHarga = 0;
+
   return (
     <main className='CartPageContainer'>
       <div className='flex justify-center CartTitle'>
@@ -57,13 +51,13 @@ export default function CartPage() {
             </tr>
           </thead>
           <tbody>
-            {/* panggil axios.get (carts embed productDetiail) */}
-
             {allProducts?.map((product) => {
               // kombinasi data productDetails dan carts
               return product.carts?.map((cart) => {
                 if (cart.userId !== user.id) return;
+                totalHarga += cart.subTotal;
                 return (
+                  // 1. ingin simpan hasil perulangan ke redux agar lebih mudah di akses di checkoutPage
                   <tr key={cart.id} className='tableBodyCart'>
                     <td>{++number}</td>
                     <td>{product.namaItem}</td>
@@ -85,7 +79,7 @@ export default function CartPage() {
                       <button
                         className='p-1 m-1 text-white bg-red-700 rounded hover:bg-red-400 '
                         onClick={() => {
-                          handleRemoveItem(product.productDetailId);
+                          handleRemoveItem(cart.id);
                         }}
                       >
                         Hapus
@@ -116,10 +110,10 @@ export default function CartPage() {
             </tbody>
           </table>
           <Link
-            to={'/admin/checkout'}
-            className='p-1 mt-3 text-center border border-black rounded hover:bg-black hover:text-white'
+            to={'/admin/checkout/' + number}
+            className='mt-3 text-center border border-black rounded hover:bg-black hover:text-white'
           >
-            <button type='button' disabled={cartItems.length === 0}>
+            <button className='p-1' type='button' disabled={number < 1}>
               Checkout
             </button>
           </Link>

@@ -24,13 +24,10 @@
   }
   .tableHeadCart th,
   .tableBodyCart td {
-    @apply px-2 py-1 border border-black border-solid;
+    @apply px-2 py-1;
   }
   .CheckoutTable div {
     @apply p-1;
-  }
-  hr {
-    @apply border-black;
   }
   .adminMenuList li {
     @apply flex h-12 cursor-pointer items-center truncate rounded-[5px] px-6 py-4 text-[0.875rem] text-gray-300 outline-none hover:bg-white/10 hover:outline-none;
@@ -53,5 +50,13 @@
     fill: currentColor;
     inline-size: 1em;
     vertical-align: middle;
+  }
+  tr:nth-child(even) {
+    background-color: #d6eeee;
+  }
+  table,
+  th,
+  td {
+    border: 1px solid black;
   }
 }

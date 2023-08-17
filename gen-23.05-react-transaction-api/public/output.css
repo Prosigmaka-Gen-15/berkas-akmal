@@ -720,10 +720,6 @@ select {
 
 .tableHeadCart th,
   .tableBodyCart td {
-  border-width: 1px;
-  border-style: solid;
-  --tw-border-opacity: 1;
-  border-color: rgb(0 0 0 / var(--tw-border-opacity));
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   padding-top: 0.25rem;
@@ -732,11 +728,6 @@ select {
 
 .CheckoutTable div {
   padding: 0.25rem;
-}
-
-hr {
-  --tw-border-opacity: 1;
-  border-color: rgb(0 0 0 / var(--tw-border-opacity));
 }
 
 .adminMenuList li {
@@ -805,6 +796,16 @@ hr {
   fill: currentColor;
   inline-size: 1em;
   vertical-align: middle;
+}
+
+tr:nth-child(even) {
+  background-color: #d6eeee;
+}
+
+table,
+  th,
+  td {
+  border: 1px solid black;
 }
 
 .absolute {
@@ -992,6 +993,34 @@ hr {
 
 .w-96 {
   width: 24rem;
+}
+
+.w-\[100\%\] {
+  width: 100%;
+}
+
+.w-\[15\%\] {
+  width: 15%;
+}
+
+.w-\[20\%\] {
+  width: 20%;
+}
+
+.w-\[350px\] {
+  width: 350px;
+}
+
+.w-\[70\%\] {
+  width: 70%;
+}
+
+.w-\[90\%\] {
+  width: 90%;
+}
+
+.w-screen {
+  width: 100vw;
 }
 
 .max-w-\[200px\] {

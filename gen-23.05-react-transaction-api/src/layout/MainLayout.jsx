@@ -11,7 +11,10 @@ function MainLayout() {
   return (
     <div>
       <Header />
-      <Outlet />
+      {/* Edit tinggi minimal admin page */}
+      <div className=''>
+        <Outlet />
+      </div>
       <Footer />
     </div>
   );

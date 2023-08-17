@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-// import { addItemToCart } from '../component/Redux/slices/cartSlice';
 
 const sizes = ['All', 38, 39, 40, 41, 42, 43];
 const sizeMapping = {
@@ -102,9 +101,6 @@ export default function AboutPage() {
         .catch((err) => {
           alert(err.response.data);
         });
-      // dispatch(addItemToCart(data));
-      // tidak pakai dispatch karena di cartPage nanti akan dilakukan /productDetails?_embed=carts untuk ambil detail product langsung dari db
-      // hapus data dari carts pakai axios.delete
     } catch (error) {
       console.log(error);
     }

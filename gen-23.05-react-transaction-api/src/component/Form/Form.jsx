@@ -40,7 +40,7 @@ export default function Form() {
   });
   const getProductData = () => {
     axios
-      .get('/productsDetail/' + productId)
+      .get('/productDetails/' + productId)
       .then((res) => {
         setValue('namaItem', res.data.namaItem);
         setValue('originalPrice', res.data.originalPrice);
@@ -54,8 +54,8 @@ export default function Form() {
   };
   const submitForm = async (data) => {
     try {
-      if (productId) await axios.patch('/productsDetail/' + productId, data);
-      else await axios.post('/productsDetail', data);
+      if (productId) await axios.patch('/productDetails/' + productId, data);
+      else await axios.post('/productDetails', data);
       navigate('/admin');
     } catch (err) {
       alert(err);
@@ -66,7 +66,7 @@ export default function Form() {
     if (productId) getProductData();
   }, []);
   return (
-    <div className='items-center gap-2 p-2 my-2 border border-gray-700 border-solid rounded Form'>
+    <div className='items-center gap-2 p-2 my-2 border border-gray-700 border-solid rounded Form w-[350px]'>
       <Link to={'/admin'}>
         <span className='absolute p-[1px] m-1 rounded border border-black hover:bg-gray-400 hover:text-zinc-50'>
           Back
@@ -128,8 +128,9 @@ export default function Form() {
           <span className='font-semibold text-red-500'>{errors.itemSize?.message}</span>
           <InputBlock
             id='lokasi_gambar'
-            type='file'
-            accept='image/*'
+            // type='file'
+            // accept='image/*'
+            type='text'
             input_title='Image Path'
             placeholder='Image Path...'
             {...register('imagePath')}
