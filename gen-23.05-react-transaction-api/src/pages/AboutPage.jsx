@@ -88,13 +88,13 @@ export default function AboutPage() {
       userId: user.id,
       productDetailId: product.id, //detail product di ambil dari productDetails, tidak perlu di masukkan ke carts
       size: sizeSelected, // Input user
-      qty: event.target.jumlah.value, // Input user
+      qty: Number(event.target.jumlah.value), // Input user
       subTotal: event.target.jumlah.value * product.discountPrice, // Input user
     };
     try {
       // Upload barang ke db carts
       axios
-        .post('carts', data)
+        .post('keranjangs', data)
         .then(() => {
           alert('Barang berhasil di tambahkan');
         })

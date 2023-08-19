@@ -37,7 +37,13 @@ export default function TransactionHistoryPage() {
   useEffect(() => {
     getTransactionHistory();
   }, []);
+  const handleRemoveItem = (itemId) => {
+    if (confirm('Apa anda yakin?')) {
+      axios.delete('transactions/' + itemId);
 
+      window.location.reload();
+    }
+  };
   return (
     <main>
       <div className='flex flex-col items-center w-screen TransactionHistoryContainer'>
@@ -67,13 +73,21 @@ export default function TransactionHistoryPage() {
                     currency: 'IDR',
                   })}
                 </td>
-                <td>
+                <td className='flex gap-1 justify-center border-none'>
                   {/* Param: userId dan transactionId */}
-                  <Link to={'/admin/transactions/detail/' + item.userId + '/' + item.id}>
+                  <Link to={'/admin/transactions/detail/' + item.id}>
                     <button className='p-1 text-white bg-blue-500 border border-black border-solid rounded hover:bg-blue-400'>
                       Detail
                     </button>
                   </Link>
+                  <button
+                    className='p-1 text-white bg-red-500 border border-black border-solid rounded hover:bg-red-400'
+                    onClick={() => {
+                      handleRemoveItem(item.id);
+                    }}
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}

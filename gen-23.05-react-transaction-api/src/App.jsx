@@ -39,10 +39,7 @@ function App() {
               <Route path='cart' element={<CartPage />} />
               <Route path='transactions'>
                 <Route index element={<TransactionHistoryPage />} />
-                <Route
-                  path='detail/:userId?/:transactionId?'
-                  element={<TransactionHistoryDetailPage />}
-                />
+                <Route path='detail/:transactionId?' element={<TransactionHistoryDetailPage />} />
               </Route>
             </Route>
           </Route>

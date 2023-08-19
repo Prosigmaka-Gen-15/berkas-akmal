@@ -2,27 +2,31 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-
+/**
+ * Note:
+ * 1. ingin menambahkan edit ukuran dan jumlah barang
+ */
 export default function CartPage() {
-  const cartItems = useSelector((state) => state.cart);
   const [allProducts, setAllProducts] = useState([]);
+  // const [editedCart, setEditedCart] = useState(null);
+  // const [buttonStatus, setButtonStatus] = useState(true);
   const user = useSelector((state) => state.auth.user);
 
   const handleRemoveItem = (itemId) => {
     if (confirm('Apa anda yakin?')) {
-      axios.delete('carts/' + itemId);
+      axios.delete('keranjangs/' + itemId);
       window.location.reload();
     }
   };
 
   useEffect(() => {
     getProduct();
-  }, [cartItems]);
+  }, []);
 
   const getProduct = async () => {
     // ambil data dari db carts
     try {
-      let response = await axios.get('/productDetails?_embed=carts');
+      let response = await axios.get('keranjangs?_expand=productDetail&userId=' + user.id);
       setAllProducts(response.data);
     } catch (e) {
       console.log(e.message);
@@ -31,7 +35,9 @@ export default function CartPage() {
 
   let number = 0;
   let totalHarga = 0;
-
+  // const handleEditCart = (cart) => {
+  //   setEditedCart(cart);
+  // };
   return (
     <main className='CartPageContainer'>
       <div className='flex justify-center CartTitle'>
@@ -51,43 +57,48 @@ export default function CartPage() {
             </tr>
           </thead>
           <tbody>
-            {allProducts?.map((product) => {
+            {allProducts?.map((keranjang) => {
               // kombinasi data productDetails dan carts
-              return product.carts?.map((cart) => {
-                if (cart.userId !== user.id) return;
-                totalHarga += cart.subTotal;
-                return (
-                  // 1. ingin simpan hasil perulangan ke redux agar lebih mudah di akses di checkoutPage
-                  <tr key={cart.id} className='tableBodyCart'>
-                    <td>{++number}</td>
-                    <td>{product.namaItem}</td>
-                    <td>
-                      {product.discountPrice?.toLocaleString('id-ID', {
-                        style: 'currency',
-                        currency: 'IDR',
-                      })}
-                    </td>
-                    <td className='text-center '>{cart.size}</td>
-                    <td className='text-center '>{cart.qty}</td>
-                    <td>
-                      {cart.subTotal?.toLocaleString('id-ID', {
-                        style: 'currency',
-                        currency: 'IDR',
-                      })}
-                    </td>
-                    <td className='text-center '>
-                      <button
-                        className='p-1 m-1 text-white bg-red-700 rounded hover:bg-red-400 '
-                        onClick={() => {
-                          handleRemoveItem(cart.id);
-                        }}
-                      >
-                        Hapus
-                      </button>
-                    </td>
-                  </tr>
-                );
-              });
+              totalHarga += keranjang.subTotal;
+              return (
+                // 1. ingin simpan hasil perulangan ke redux agar lebih mudah di akses di checkoutPage
+                <tr key={keranjang.id} className='tableBodyCart'>
+                  <td>{++number}</td>
+                  <td>{keranjang.productDetail.namaItem}</td>
+                  <td>
+                    {keranjang.productDetail.discountPrice?.toLocaleString('id-ID', {
+                      style: 'currency',
+                      currency: 'IDR',
+                    })}
+                  </td>
+                  <td className='text-center '>{keranjang.size}</td>
+                  <td className='text-center '>{keranjang.qty}</td>
+                  <td>
+                    {keranjang.subTotal?.toLocaleString('id-ID', {
+                      style: 'currency',
+                      currency: 'IDR',
+                    })}
+                  </td>
+                  <td className='text-center '>
+                    {/* <button
+                      onClick={() => setButtonStatus((buttonStatus) => !buttonStatus)}
+                      type='button'
+                      className='p-1 m-1 text-white bg-red-700 rounded hover:bg-red-400 '
+                    >
+                      {buttonStatus ? 'edit' : 'update'}
+                    </button>
+                    || */}
+                    <button
+                      className='p-1 m-1 text-white bg-red-700 rounded hover:bg-red-400 '
+                      onClick={() => {
+                        handleRemoveItem(keranjang.id);
+                      }}
+                    >
+                      Hapus
+                    </button>
+                  </td>
+                </tr>
+              );
             })}
           </tbody>
         </table>

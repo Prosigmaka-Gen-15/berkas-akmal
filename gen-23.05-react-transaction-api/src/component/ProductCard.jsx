@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 // import { useDispatch } from 'react-redux';
-// import { addItemToCart } from '../component/Redux/slices/cartSlice';
 
 //deklarasi tipe data
 Product.propTypes = {
@@ -9,6 +8,7 @@ Product.propTypes = {
   namaProduk: PropTypes.string,
   hargaDiskon: PropTypes.number,
   hargaOri: PropTypes.number,
+  // productId masih error ketika tambah barang baru
   productId: PropTypes.number,
   imgUrl: PropTypes.string,
   size: PropTypes.number,
@@ -21,12 +21,13 @@ export default function Product(props) {
 
   {
     /** 
-     * di hide sementara karena di cartPage belum ada fitur ubah ukuran dan jumlah barang
+     * 1. di hide sementara karena di cartPage belum ada fitur ubah ukuran dan jumlah barang
+     * 2. add!ItemToCart tidak digunakan, sudah menggunakan db gunakan axios.post
   const handleAddToCart = () => {
     // Format object di cart
     const data = { id: id, nama: namaProduk, harga: hargaDiskon, size: size, qty: qty };
     try {
-      dispatch(addItemToCart(data));
+      //gunakan axios.post
     } catch (err) {
       alert(err);
       console.log(err);
@@ -39,6 +40,7 @@ export default function Product(props) {
   return (
     <article className='flex flex-col items-center justify-center max-w-xs p-3 m-4 text-center transform border border-gray-300 border-solid hover:scale-105 hover:shadow hover:border-gray-600'>
       <Link
+        // undefined untuk product baru
         to={'/product/' + productId}
         className='flex flex-col items-center justify-center text-center'
       >
@@ -52,6 +54,7 @@ export default function Product(props) {
         </p>
       </Link>
       <Link
+        // undefined untuk product baru
         to={'/product/' + productId}
         className='inline-block p-1 mt-3 no-underline border border-black border-solid hover:bg-slate-900 hover:text-white'
       >

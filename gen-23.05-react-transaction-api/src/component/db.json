@@ -140,7 +140,16 @@
       "id": 1
     }
   ],
-  "carts": [],
+  "keranjangs": [
+    {
+      "id": 1,
+      "userId": 1,
+      "productDetailId": 3,
+      "size": 41,
+      "qty": 1,
+      "subTotal": 1350000
+    }
+  ],
   "transactions": [],
   "transactionDetails": [],
   "transactionHistories": []

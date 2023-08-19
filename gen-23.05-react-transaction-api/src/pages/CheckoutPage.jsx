@@ -3,14 +3,17 @@ import { useSelector } from 'react-redux';
 import InputBlock from '../component/InputBlock';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
-
+/**
+ *Note:
+ *1. Rencananya default berdasarkan info alamat di API user
+ */
 export default function CheckoutPage() {
   const navigate = useNavigate();
   const { isItemExist } = useParams();
   const user = useSelector((state) => state.auth.user);
   const [allProducts, setAllProducts] = useState([]);
   const [shipmentFee, setShipFee] = useState(0);
-  const [adminFee, setAdminFee] = useState(0);
+  const [paymentAdminFee, setPaymentAdminFee] = useState(0);
   const orderDate = new Date().toLocaleString('id-ID', {
     year: 'numeric',
     month: 'long',
@@ -27,9 +30,9 @@ export default function CheckoutPage() {
   let totalItem = 0;
 
   const getProduct = async () => {
-    // ambil data dari db carts
     try {
-      let response = await axios.get('/productDetails?_embed=carts');
+      //ambil data dari db berdasarkan user yg login
+      let response = await axios.get('keranjangs?_expand=productDetail&userId=' + user.id);
       setAllProducts(response.data);
     } catch (e) {
       console.log(e.message);
@@ -37,70 +40,66 @@ export default function CheckoutPage() {
   };
 
   useEffect(() => {
-    // Kembali ketika cart kosong. belum di ubah kondisinya, masih pakai redux
     if (isItemExist < 1 || isItemExist == null) {
       navigate('/admin/cart');
     }
     getProduct();
   }, [navigate]);
-  // Input formData
   const setInputValue = (event) =>
     setTransactionsData({
       ...transactionsData,
-      [event.target.id]: event.target.value, //simpan hasil input user ke transactionsData
-      totalPrice: totalHarga, //totalHarga terbaru dari useEffect
+      [event.target.id]: event.target.value,
+      totalPrice: totalHarga,
     });
-  // Input formData.transactionDetails.shipMethod
   const setShipMethod = (radioID) => {
+    let shipFee = 0;
     if (radioID == 'JNE') {
-      setShipFee(10000);
+      shipFee = 10000;
+      setShipFee(shipFee);
     } else {
-      setShipFee(20000);
+      shipFee = 20000;
+      setShipFee(shipFee);
     }
     setTransactionsData({
       ...transactionsData,
       shipMethod: radioID,
+      shipFee: shipFee,
     });
   };
-  // Input formData.transactionDetails.paymentMethod
   const setPaymentMethod = (radioID) => {
+    let paymentFee = 0;
     if (radioID == 'visa') {
-      setAdminFee(15000);
+      paymentFee = 15000;
+      setPaymentAdminFee(paymentFee);
     } else {
-      setAdminFee(30000);
+      paymentFee = 30000;
+      setPaymentAdminFee(paymentFee);
     }
     setTransactionsData({
       ...transactionsData,
+      totalItems: totalItem,
       paymentMethod: radioID,
+      paymentAdminFee: paymentFee,
     });
   };
 
   // Ambil data untuk Table transactionDetails
-  allProducts?.map((products) => {
+  allProducts?.map((keranjang) => {
     // kombinasi data productDetails dan carts
-    if (products.carts.length > 0) {
-      products.carts.map((cart) => {
-        if (cart.userId == user.id) {
-          // Hitung totalHarga dan gabungkan ke dalam Array Object
-          totalHarga += cart.subTotal;
-          totalItem += 1;
-          productDetails = [
-            ...productDetails,
-            {
-              id: '',
-              cartId: cart.id,
-              qty: cart.qty,
-              size: cart.size,
-              subTotal: cart.subTotal,
-              productDetailId: cart.productDetailId,
-            },
-          ];
-        }
-      });
-    }
+    totalItem++;
+    totalHarga += keranjang.subTotal;
+    productDetails = [
+      ...productDetails,
+      {
+        id: '',
+        cartId: keranjang.id,
+        qty: keranjang.qty,
+        size: keranjang.size,
+        subTotal: keranjang.subTotal,
+        productDetailId: keranjang.productDetailId,
+      },
+    ];
   });
-
-  // console.log(productDetails.length);
   // Format data untuk table transactions
   const [transactionsData, setTransactionsData] = useState({
     id: '', // Input user
@@ -108,29 +107,26 @@ export default function CheckoutPage() {
     username: user.username,
     orderDate: orderDate,
     orderTime: orderTime,
-    totalItems: '', //carts
     receiverName: '', // Input user
     receiverAddress: '', // Input user
+    totalItems: '',
     shipMethod: '', // Input user
+    shipFee: '',
     paymentMethod: '', // Input user
+    paymentAdminFee: '',
   });
-  const handleCheckout = (event) => {
+  const handleCheckout = async (event) => {
     event.preventDefault();
-    setTransactionsData((prev) => ({
-      ...prev,
-      totalItems: totalItem,
-    }));
-    axios
+    await axios
       .post('transactions', transactionsData)
-      .then((res) => {
+      .then(async (res) => {
         for (const detail of productDetails) {
-          axios.delete('carts/' + detail.cartId);
-          const payload = {
+          const transactionDetailsData = {
             ...detail,
             transactionId: res.data.id, //id transactions
           };
-          axios
-            .post('transactionDetails', payload)
+          await axios
+            .post('transactionDetails', transactionDetailsData)
             .then(() => {
               console.log('Berhasil');
             })
@@ -143,12 +139,12 @@ export default function CheckoutPage() {
       .catch((err) => {
         console.log(err.response.data);
       });
-
-    // lokasi hapus items di cart setelah upload, belum di buat karena kalau dihapus semua items dari user lain juga ikut terhapus
-    // harus hapus berdasarkan user id yang sudah di upload
+    allProducts?.map((keranjang) => {
+      //delete db berdasarkan id keranjang
+      axios.delete('keranjangs/' + keranjang.id);
+    });
     navigate('/');
   };
-  // console.log(formData);
   return (
     <main>
       <div className='flex justify-center pb-2 CheckoutTitle'>
@@ -159,7 +155,7 @@ export default function CheckoutPage() {
         <div className='flex flex-col justify-center pt-2 text-center CheckoutTable'>
           <div className='text-start'>
             <address>
-              {/* Rencananya default berdasarkan info alamat di API user */}
+              {/* [1] */}
               <InputBlock
                 input_title={'Nama Penerima'}
                 id='receiverName'
@@ -255,30 +251,25 @@ export default function CheckoutPage() {
               </tr>
             </thead>
             <tbody>
-              {allProducts?.map((product) => {
-                // kombinasi data productDetails dan carts
-                return product.carts?.map((cart) => {
-                  if (cart.userId !== user.id) return;
-                  return (
-                    // 1. ingin simpan hasil perulangan ke redux agar lebih mudah di akses di checkoutPage
-                    <tr key={cart.id} className='tableBodyCheckout'>
-                      <td>{product.namaItem}</td>
-                      <td>
-                        {product.discountPrice?.toLocaleString('id-ID', {
-                          style: 'currency',
-                          currency: 'IDR',
-                        })}
-                      </td>
-                      <td className='text-center '>x{cart.qty}</td>
-                      <td>
-                        {cart.subTotal?.toLocaleString('id-ID', {
-                          style: 'currency',
-                          currency: 'IDR',
-                        })}
-                      </td>
-                    </tr>
-                  );
-                });
+              {allProducts?.map((keranjang) => {
+                return (
+                  <tr key={keranjang.id} className='tableBodyCheckout'>
+                    <td>{keranjang.productDetail.namaItem}</td>
+                    <td>
+                      {keranjang.productDetail.discountPrice?.toLocaleString('id-ID', {
+                        style: 'currency',
+                        currency: 'IDR',
+                      })}
+                    </td>
+                    <td className='text-center '>x{keranjang.qty}</td>
+                    <td>
+                      {keranjang.subTotal?.toLocaleString('id-ID', {
+                        style: 'currency',
+                        currency: 'IDR',
+                      })}
+                    </td>
+                  </tr>
+                );
               })}
             </tbody>
           </table>
@@ -292,16 +283,16 @@ export default function CheckoutPage() {
                 currency: 'IDR',
               })}
             </span>
-            <span className='flex justify-end m-1 text-sm font-medium uppercase'>
-              Payment Admin:&nbsp;
-              {adminFee?.toLocaleString('id-ID', {
+            <span className='flex justify-end m-1 text-sm font-medium'>
+              Payment Admin Fee:&nbsp;
+              {paymentAdminFee?.toLocaleString('id-ID', {
                 style: 'currency',
                 currency: 'IDR',
               })}
             </span>
             <span className='flex justify-end m-1 text-lg font-semibold uppercase'>
               Total:&nbsp;
-              {(totalHarga + shipmentFee + adminFee)?.toLocaleString('id-ID', {
+              {(totalHarga + shipmentFee + paymentAdminFee)?.toLocaleString('id-ID', {
                 style: 'currency',
                 currency: 'IDR',
               })}
